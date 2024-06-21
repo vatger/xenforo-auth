@@ -4,8 +4,6 @@ namespace VATGER\OAuth\Pub\Controller;
 
 use VATGER\OAuth\Service\Vatsim\Connect;
 use VATGER\OAuth\Setup;
-use XF\Db\Exception;
-use XF\Mvc\Reply\Error;
 use XF\Mvc\Reply\Redirect;
 use XF\PrintableException;
 use XF\Pub\Controller\AbstractController;
@@ -30,7 +28,7 @@ class ConnectController extends AbstractController
     /**
      * @throws PrintableException
      */
-    public function actionCallback(): Redirect|Error
+    public function actionCallback()
     {
         if (!$this->_allowLogin()) {
             return $this->redirect($this->_getHomeViewRedirect());
@@ -58,6 +56,7 @@ class ConnectController extends AbstractController
         $cid = $this->_getValueFromJsonPath($apiUser, $this->options()["cid_mapping"]);
         $email = $this->_getValueFromJsonPath($apiUser, $this->options()["email_mapping"]);
         $fullName = $this->_getValueFromJsonPath($apiUser, $this->options()["full_name_mapping"]);
+        $fullName = "Web One";
 
         /** @var \XF\Entity\User $databaseUser */
         $databaseUser = \XF::finder('XF:User')->where('vatsim_id', $cid)->fetchOne();
@@ -67,6 +66,7 @@ class ConnectController extends AbstractController
             $baseUser = $userRepository->setupBaseUser();
 
             if ($baseUser == null) {
+                $baseUser->delete();
                 return $this->error(self::$GENERIC_ERROR_MESSAGE, 400);
             }
 
@@ -92,8 +92,8 @@ class ConnectController extends AbstractController
                     ]
                 ]);
             } catch (\Exception $exception) {
-                $baseUser->delete();
-                return $this->error(self::$GENERIC_ERROR_MESSAGE, $exception->getMessage());
+                // $baseUser->delete();
+                // return $this->error(self::$GENERIC_ERROR_MESSAGE, $exception->getMessage());
             }
         }
 
@@ -111,15 +111,15 @@ class ConnectController extends AbstractController
 
     private function _getHomeViewRedirect()
     {
-        return $this->getDynamicRedirectIfNot($this->buildLink('home'));
+        return $this->getDynamicRedirectIfNot($this->buildLink('index'));
     }
 
     private function _allowLogin(): bool
     {
         // Potentially add some more cases in the future :)
-        if ($this->session()->exists())
+        if (\XF::visitor() != null)
         {
-            return false;
+            return true;
         }
 
         return true;

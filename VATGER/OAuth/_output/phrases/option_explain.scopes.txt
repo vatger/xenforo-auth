@@ -1,1 +1,1 @@
-Defines the scopes for the OAuth flow. Must be space separated!
+Defines the scopes for the OAuth flow. Must be space separated.

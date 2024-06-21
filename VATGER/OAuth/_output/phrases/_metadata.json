@@ -61,39 +61,39 @@
     },
     "option_explain.base_url.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "7288ce1be3a76582b7493e1041b61062"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "c9e03325d4e93cd2a5909751cb90c6f5"
     },
     "option_explain.cid_mapping.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "3c657cbbdec75a260e417904051185e5"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "085670e950f03238fcbd8ac509b61fc3"
     },
     "option_explain.client_id.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "0de5c637b37984174799f724870c853e"
     },
     "option_explain.client_secret.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "5c336a61b6e9900c8fe4886a49a1ed7d"
     },
     "option_explain.email_mapping.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "b43b63bb25221fdb1870e7da9c14d730"
     },
     "option_explain.full_name_mapping.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "9968bb851b5f01142d234469bbe92996"
     },
     "option_explain.homepage_callback.txt": {
         "global_cache": false,
@@ -103,15 +103,15 @@
     },
     "option_explain.redirect_url.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "086766defa0b6ded84bd6fd7ba6deeaf"
     },
     "option_explain.scopes.txt": {
         "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1 Alpha",
-        "hash": "de58ae6852da32f20368b0823fd30036"
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "bdd5e290bd969e459698a6e129e8f2b0"
     },
     "option_group.vatgerOAuth.txt": {
         "global_cache": false,

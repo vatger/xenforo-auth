@@ -1,0 +1,36 @@
+<div class="overlay-container custom-overlay">
+    <div class="overlay">
+        <div class="overlay-title">
+            Funktionsaccount Auswählen
+        </div>
+        <div class="overlay-content">
+
+            <xf:form action="/functional/use" method="GET">
+                <div class="block-container" style="border-style: none">
+                    <div class="block-body">
+                        <xf:inforow>
+                            Als Staffmitglied hast du die Möglichkeit Funktionsaccount deines Departments zu nutzen um bspw. offizielle Ankündigungen zu schreiben.
+                            Wähle dazu den gewünschten Funktionsaccount aus und wähle "Auswählen".
+                        </xf:inforow>
+
+                        <xf:if is="$accountCount == 0">
+                            <xf:selectrow label="Funktionsaccount" disabled="true">
+                                <xf:option value="-1" selected="true">N/A</xf:option>
+                            </xf:selectrow>
+
+                        <xf:else />
+
+                            <xf:selectrow name="account_id" label="Funktionsaccount">
+                                <xf:foreach loop="$functionalAccounts" value="$facc">
+                                    <xf:option value="{$facc.user_id}">{{$facc.username}}</xf:option>
+                                </xf:foreach>
+                            </xf:selectrow>
+
+                        </xf:if>
+                    </div>
+                    <xf:submitrow icon="unlock" submit="Auswählen"/>
+                </div>
+            </xf:form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <option option_id="base_url" edit_format="textbox" data_type="string" advanced="0">
+    <default_value>https://auth.vatsim-germany.org</default_value>
+    <relation group_id="vatgerOAuth" display_order="1"/>
+  </option>
+  <option option_id="cid_mapping" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="3"/>
+  </option>
+  <option option_id="client_id" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="1"/>
+  </option>
+  <option option_id="client_secret" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="1"/>
+  </option>
+  <option option_id="email_mapping" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="3"/>
+  </option>
+  <option option_id="full_name_mapping" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="3"/>
+  </option>
+  <option option_id="homepage_callback" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="2"/>
+  </option>
+  <option option_id="redirect_url" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerOAuth" display_order="1"/>
+  </option>
+  <option option_id="scopes" edit_format="textbox" data_type="string" advanced="0">
+    <default_value>full_name email country</default_value>
+    <relation group_id="vatgerOAuth" display_order="1"/>
+  </option>
+</options>

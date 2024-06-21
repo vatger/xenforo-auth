@@ -8,6 +8,6 @@
     "advanced": false,
     "default_value": "https://auth.vatsim-germany.org",
     "relations": {
-        "vatgerOAuth": 1
+        "vatgerOAuth": 0
     }
 }

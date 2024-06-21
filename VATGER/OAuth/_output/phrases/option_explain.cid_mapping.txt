@@ -1,12 +1,16 @@
 Defines the mapping of the returned JSON structure to the singular CID value. 
 
 For example:
-{
-    "data": {
-        "personal": {
-            "cid": "1373921"
-         }
-    }
+<pre>
+{ 
+  "data": { 
+    "cid": 1373921,
+    "personal": { 
+      "email": "example@example.com",
+      "fullname": "Max Mustermann", 
+    } 
+  } 
 } 
+</pre>
 
-If we wanted to access the cid, we would use the string: "data.personal.cid".
+If we wanted to access the cid, we would use the string: "data.cid".

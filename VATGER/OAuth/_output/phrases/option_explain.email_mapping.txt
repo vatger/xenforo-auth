@@ -1,0 +1,1 @@
+If we wanted to access the email, we would use the string: "data.personal.email".
