@@ -1,0 +1,14 @@
+{
+    "legacy_addon_id": "",
+    "title": "VATSIM Germany OAuth Plugin",
+    "description": "The VATSIM Germany OAuth plugin integrates with VATGER's OAuth2 implementation to allow SSO login in Xenforo.",
+    "version_id": 1,
+    "version_string": "0.0.1 Alpha",
+    "dev": "VATSIM Germany",
+    "dev_url": "https://github.com/vatger/xenforo-oauth",
+    "faq_url": "",
+    "support_url": "",
+    "extra_urls": [],
+    "require": [],
+    "icon": ""
+}

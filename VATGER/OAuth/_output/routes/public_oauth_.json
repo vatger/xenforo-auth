@@ -1,0 +1,11 @@
+{
+    "route_type": "public",
+    "route_prefix": "oauth",
+    "sub_name": "",
+    "format": "",
+    "build_class": "",
+    "build_method": "",
+    "controller": "VATGER\\OAuth:ConnectController",
+    "context": "oauth",
+    "action_prefix": ""
+}

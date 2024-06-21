@@ -1,0 +1,12 @@
+Defines the mapping of the returned JSON structure to the singular CID value. 
+
+For example:
+{
+    "data": {
+        "personal": {
+            "cid": "1373921"
+         }
+    }
+} 
+
+If we wanted to access the cid, we would use the string: "data.personal.cid".
