@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="option.base_url" version_id="1" version_string="0.0.1"><![CDATA[Base URL]]></phrase>
+  <phrase title="option.cid_mapping" version_id="1" version_string="0.0.1"><![CDATA[CID Mapping]]></phrase>
+  <phrase title="option.client_id" version_id="1" version_string="0.0.1"><![CDATA[Client ID]]></phrase>
+  <phrase title="option.client_secret" version_id="1" version_string="0.0.1"><![CDATA[Client Secret]]></phrase>
+  <phrase title="option.email_mapping" version_id="1" version_string="0.0.1"><![CDATA[E-Mail Mapping]]></phrase>
+  <phrase title="option.full_name_mapping" version_id="1" version_string="0.0.1"><![CDATA[Full Name Mapping]]></phrase>
+  <phrase title="option.homepage_callback" version_id="1" version_string="0.0.1"><![CDATA[Homepage Callback URL]]></phrase>
+  <phrase title="option.redirect_url" version_id="1" version_string="0.0.1"><![CDATA[Redirect URL]]></phrase>
+  <phrase title="option.scopes" version_id="1" version_string="0.0.1"><![CDATA[Scopes]]></phrase>
+  <phrase title="option_explain.base_url" version_id="1" version_string="0.0.1"><![CDATA[Contains the base URL for VATSIM Connect. Endpoints are derived from this URL as follows:
+<ul>
+<li><pre>GET /oauth/authorize</pre></li>
+<li><pre>POST /oauth/token</pre></li>
+<li><pre>GET /api/user</pre></li>
+</ul>]]></phrase>
+  <phrase title="option_explain.cid_mapping" version_id="1" version_string="0.0.1"><![CDATA[Defines the mapping of the returned JSON structure to the singular CID value. 
+
+For example:
+<pre>
+{
+    "data": {
+        "cid": "1373921",
+        "personal": {
+            "email": "example@example.com",
+            "full_name": "Max Mustermann"
+         }
+    }
+} 
+</pre>
+
+If we wanted to access the cid, we would use the string: <strong>data.cid</strong>.]]></phrase>
+  <phrase title="option_explain.client_id" version_id="1" version_string="0.0.1"><![CDATA[The OAuth2 Client ID.]]></phrase>
+  <phrase title="option_explain.client_secret" version_id="1" version_string="0.0.1"><![CDATA[The OAuth2 Client Secret.]]></phrase>
+  <phrase title="option_explain.email_mapping" version_id="1" version_string="0.0.1"><![CDATA[If we wanted to access the email, we would use the string: <strong>data.personal.email</strong>.]]></phrase>
+  <phrase title="option_explain.full_name_mapping" version_id="1" version_string="0.0.1"><![CDATA[If we wanted to access the full name, we would use the string: <strong>data.personal.full_name</strong>.]]></phrase>
+  <phrase title="option_explain.homepage_callback" version_id="1" version_string="0.0.1"><![CDATA[The homepage callback URL is used to notify the homepage of a new client being created. It sends a post request to the specified endpoint containing the CID and Board (Forum) ID of the user in question.]]></phrase>
+  <phrase title="option_explain.redirect_url" version_id="1" version_string="0.0.1"><![CDATA[The OAuth2 Redirect URL.]]></phrase>
+  <phrase title="option_explain.scopes" version_id="1" version_string="0.0.1"><![CDATA[Defines the scopes for the OAuth flow. Must be space separated.]]></phrase>
+  <phrase title="option_group.vatgerAuth" version_id="1" version_string="0.0.1"><![CDATA[VATGER - Authentication]]></phrase>
+  <phrase title="option_group_description.vatgerAuth" version_id="1" version_string="0.0.1"><![CDATA[Configure the VATSIM Germany Authentication Plugin.]]></phrase>
+</phrases>

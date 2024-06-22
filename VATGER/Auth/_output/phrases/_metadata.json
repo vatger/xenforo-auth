@@ -1,0 +1,122 @@
+{
+    "option.base_url.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "ade86bc4899761ad46c52e381b6228bb"
+    },
+    "option.cid_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "01c9a5eec3d130a68310a658ac04a92c"
+    },
+    "option.client_id.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "76525f0f34b48475e5ca33f71d296f3b"
+    },
+    "option.client_secret.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "734082edf44417dd19cc65943aa65c36"
+    },
+    "option.email_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "31b4ca96f51ab4dc68c9d4659f63f27d"
+    },
+    "option.full_name_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "334bcbb15cf4b1d97919a42c50cdccbd"
+    },
+    "option.homepage_callback.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "61f025c6b6d7f25ce22fd9de55e40793"
+    },
+    "option.redirect_url.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "3ca7ca93df600ffff03ee0e7eac6950f"
+    },
+    "option.scopes.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "48b26d57c14af0500090800c2cdd0d58"
+    },
+    "option_explain.base_url.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "7c2854da04077617382d4968c23f5712"
+    },
+    "option_explain.cid_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "33ccda6b5d3d2c20ac7bbe88849c0fea"
+    },
+    "option_explain.client_id.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "0de5c637b37984174799f724870c853e"
+    },
+    "option_explain.client_secret.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "61a802b785c5b1eec82d125ae38bef13"
+    },
+    "option_explain.email_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "bd66f93f1c7f46eec396822bb1aa3893"
+    },
+    "option_explain.full_name_mapping.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "28745b656fafe4c537b3cb8313d9cdfc"
+    },
+    "option_explain.homepage_callback.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "be8e814efb63dfcdc90c17a4a0a28eec"
+    },
+    "option_explain.redirect_url.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "086766defa0b6ded84bd6fd7ba6deeaf"
+    },
+    "option_explain.scopes.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "bdd5e290bd969e459698a6e129e8f2b0"
+    },
+    "option_group.vatgerAuth.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "0a89d4dfb891dfa5727e714c9b58ae38"
+    },
+    "option_group_description.vatgerAuth.txt": {
+        "global_cache": false,
+        "version_id": 1,
+        "version_string": "0.0.1",
+        "hash": "aef58c9f106f1e5b3b8051574c48159f"
+    }
+}

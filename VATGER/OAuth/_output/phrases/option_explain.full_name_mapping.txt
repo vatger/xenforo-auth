@@ -1,1 +1,0 @@
-If we wanted to access the full name, we would use the string: "data.personal.fullname"
