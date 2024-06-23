@@ -31,9 +31,10 @@ class Connect extends AbstractService {
         $base_url = $this->connectOptions["base_url"] . "/oauth/authorize";
 
         $scopes = urlencode($this->connectOptions["scopes"]);
-        $redirect_url = $this->connectOptions['redirect_url'];
-
-        return $base_url . '?response_type=code&client_id=830&scope=' . $scopes . '&redirect_uri=' . $redirect_url;
+        $redirectUrl = $this->connectOptions['redirect_url'];
+        $clientId = $this->connectOptions['client_id'];
+        
+        return $base_url . '?response_type=code&client_id=' . $clientId . '&scope=' . $scopes . '&redirect_uri=' . $redirectUrl;
     }
 
     public function getAuthToken(string $code): mixed
