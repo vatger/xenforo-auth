@@ -1,29 +1,35 @@
 {
-    "base_url.json": {
-        "hash": "6ee4043697c3640d3a7bc541342e35ac"
-    },
     "cid_mapping.json": {
-        "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
+        "hash": "67d032eee7a8764f4bc8ed0e6c03044b"
     },
     "client_id.json": {
-        "hash": "1f68932af8fde78535a63d26b13479c0"
-    },
-    "client_secret.json": {
-        "hash": "1f68932af8fde78535a63d26b13479c0"
-    },
-    "email_mapping.json": {
-        "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
-    },
-    "full_name_mapping.json": {
-        "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
-    },
-    "homepage_callback.json": {
         "hash": "d9efb782e7dce7eda4c96beb205a41ce"
     },
+    "client_secret.json": {
+        "hash": "d9efb782e7dce7eda4c96beb205a41ce"
+    },
+    "email_mapping.json": {
+        "hash": "67d032eee7a8764f4bc8ed0e6c03044b"
+    },
+    "full_name_mapping.json": {
+        "hash": "67d032eee7a8764f4bc8ed0e6c03044b"
+    },
+    "homepage_callback.json": {
+        "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
+    },
+    "oauth_access_token_endpoint.json": {
+        "hash": "a3ccddcd9dbd59de01e81a14f42cc75e"
+    },
+    "oauth_auth_endpoint.json": {
+        "hash": "6ec0d84289ad10ec3d078317b7c3d22f"
+    },
+    "oauth_user_endpoint.json": {
+        "hash": "aab5df6cbe9743cbf8e44c4b33dae934"
+    },
     "redirect_url.json": {
-        "hash": "1f68932af8fde78535a63d26b13479c0"
+        "hash": "d9efb782e7dce7eda4c96beb205a41ce"
     },
     "scopes.json": {
-        "hash": "1f68932af8fde78535a63d26b13479c0"
+        "hash": "d9efb782e7dce7eda4c96beb205a41ce"
     }
 }

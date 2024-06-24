@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <options>
-  <option option_id="base_url" edit_format="textbox" data_type="string" advanced="0">
-    <default_value>https://auth-dev.vatsim.net</default_value>
-    <relation group_id="vatgerAuth" display_order="1"/>
-  </option>
   <option option_id="cid_mapping" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="3"/>
+    <relation group_id="vatgerAuth" display_order="4"/>
   </option>
   <option option_id="client_id" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="1"/>
+    <relation group_id="vatgerAuth" display_order="2"/>
   </option>
   <option option_id="client_secret" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="1"/>
+    <relation group_id="vatgerAuth" display_order="2"/>
   </option>
   <option option_id="email_mapping" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="3"/>
+    <relation group_id="vatgerAuth" display_order="4"/>
   </option>
   <option option_id="full_name_mapping" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="3"/>
+    <relation group_id="vatgerAuth" display_order="4"/>
   </option>
   <option option_id="homepage_callback" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="2"/>
+    <relation group_id="vatgerAuth" display_order="3"/>
+  </option>
+  <option option_id="oauth_access_token_endpoint" edit_format="textbox" data_type="string" advanced="0">
+    <default_value>https://auth-dev.vatsim.net/oauth/token</default_value>
+    <relation group_id="vatgerAuth" display_order="1"/>
+  </option>
+  <option option_id="oauth_auth_endpoint" edit_format="textbox" data_type="string" advanced="0">
+    <default_value>https://auth-dev.vatsim.net/oauth/authorize</default_value>
+    <relation group_id="vatgerAuth" display_order="0"/>
+  </option>
+  <option option_id="oauth_user_endpoint" edit_format="textbox" data_type="string" advanced="0">
+    <default_value>https://auth-dev.vatsim.net/api/user</default_value>
+    <relation group_id="vatgerAuth" display_order="1"/>
   </option>
   <option option_id="redirect_url" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="1"/>
+    <relation group_id="vatgerAuth" display_order="2"/>
   </option>
   <option option_id="scopes" edit_format="textbox" data_type="string" advanced="0">
     <default_value></default_value>
-    <relation group_id="vatgerAuth" display_order="1"/>
+    <relation group_id="vatgerAuth" display_order="2"/>
   </option>
 </options>

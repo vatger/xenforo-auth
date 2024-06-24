@@ -1,0 +1,1 @@
+This is the endpoint from which the user information will be queried.

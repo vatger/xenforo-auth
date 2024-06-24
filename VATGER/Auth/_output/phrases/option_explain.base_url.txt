@@ -1,6 +1,0 @@
-Contains the base URL for VATSIM Connect. Endpoints are derived from this URL as follows:
-<ul>
-<li><pre>GET /oauth/authorize</pre></li>
-<li><pre>POST /oauth/token</pre></li>
-<li><pre>GET /api/user</pre></li>
-</ul>

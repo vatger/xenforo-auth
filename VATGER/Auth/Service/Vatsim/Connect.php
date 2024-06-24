@@ -18,7 +18,9 @@ class Connect extends AbstractService {
         $this->client = \XF::app()->http()->client();
 
         $this->connectOptions = [
-            'base_url' => $options->base_url,
+            'oauth_auth_endpoint' => $options->oauth_auth_endpoint,
+            'oauth_token_endpoint' => $options->oauth_access_token_endpoint,
+            'oauth_user_endpoint' => $options->oauth_user_endpoint,
             'client_id' => $options->client_id,
             'client_secret' => $options->client_secret,
             'redirect_url' => $options->redirect_url,
@@ -28,18 +30,19 @@ class Connect extends AbstractService {
 
     public function getRedirectURI(): string
     {
-        $base_url = $this->connectOptions["base_url"] . "/oauth/authorize";
+        $url = $this->connectOptions["oauth_auth_endpoint"];
 
         $scopes = urlencode($this->connectOptions["scopes"]);
-        $redirect_url = $this->connectOptions['redirect_url'];
+        $redirectUrl = $this->connectOptions['redirect_url'];
+        $clientId = $this->connectOptions['client_id'];
 
-        return $base_url . '?response_type=code&client_id=830&scope=' . $scopes . '&redirect_uri=' . $redirect_url;
+        return $url . '?response_type=code&client_id=' . $clientId . '&scope=' . $scopes . '&redirect_uri=' . $redirectUrl;
     }
 
     public function getAuthToken(string $code): mixed
     {
         try {
-            $tokenResponse = $this->client->post($this->connectOptions['base_url'] . '/oauth/token', [
+            $tokenResponse = $this->client->post($this->connectOptions['oauth_token_endpoint'], [
                 'json' => [
                     'grant_type' => 'authorization_code',
                     'code' => $code,
@@ -59,7 +62,7 @@ class Connect extends AbstractService {
     public function getUserDetails(string $accessToken): mixed
     {
         try {
-            $userResponse = $this->client->get($this->connectOptions['base_url'] . '/api/user', [
+            $userResponse = $this->client->get($this->connectOptions['oauth_user_endpoint'], [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $accessToken,
                 ]

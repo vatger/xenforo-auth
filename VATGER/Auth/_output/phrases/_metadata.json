@@ -1,10 +1,4 @@
 {
-    "option.base_url.txt": {
-        "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1",
-        "hash": "ade86bc4899761ad46c52e381b6228bb"
-    },
     "option.cid_mapping.txt": {
         "global_cache": false,
         "version_id": 1,
@@ -41,6 +35,24 @@
         "version_string": "0.0.1",
         "hash": "61f025c6b6d7f25ce22fd9de55e40793"
     },
+    "option.oauth_access_token_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "a487ac3493d3c40ab2259d653810edec"
+    },
+    "option.oauth_auth_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "228266527bf735cbb662d8910d9aed24"
+    },
+    "option.oauth_user_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "19e5aed7a9e9218f0dc395113d6b61b0"
+    },
     "option.redirect_url.txt": {
         "global_cache": false,
         "version_id": 1,
@@ -52,12 +64,6 @@
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "48b26d57c14af0500090800c2cdd0d58"
-    },
-    "option_explain.base_url.txt": {
-        "global_cache": false,
-        "version_id": 1,
-        "version_string": "0.0.1",
-        "hash": "7c2854da04077617382d4968c23f5712"
     },
     "option_explain.cid_mapping.txt": {
         "global_cache": false,
@@ -94,6 +100,24 @@
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "be8e814efb63dfcdc90c17a4a0a28eec"
+    },
+    "option_explain.oauth_access_token_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "a8332d09a4f30ccea165ef4aad6672dd"
+    },
+    "option_explain.oauth_auth_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "98fe8f44a629fc8acc0e645da5a72b8a"
+    },
+    "option_explain.oauth_user_endpoint.txt": {
+        "global_cache": false,
+        "version_id": 2,
+        "version_string": "0.0.2",
+        "hash": "74459d16adab9ea5f8b1f4698e30c84a"
     },
     "option_explain.redirect_url.txt": {
         "global_cache": false,

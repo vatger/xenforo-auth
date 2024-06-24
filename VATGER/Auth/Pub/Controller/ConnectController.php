@@ -49,18 +49,26 @@ class ConnectController extends AbstractController
         }
 
         $apiUser = $connectService->getUserDetails($tokens['access_token']);
-        if ($apiUser == null) {
-            return $this->error(self::$GENERIC_ERROR_MESSAGE, 400);
-        }
-
         $cid = $this->_getValueFromJsonPath($apiUser, $this->options()["cid_mapping"]);
         $email = $this->_getValueFromJsonPath($apiUser, $this->options()["email_mapping"]);
         $fullName = $this->_getValueFromJsonPath($apiUser, $this->options()["full_name_mapping"]);
-        $fullName = "Web One";
+
+        if (!isset($apiUser, $cid, $email, $fullName)) {
+            return $this->error(self::$GENERIC_ERROR_MESSAGE, 400);
+        }
 
         /** @var \XF\Entity\User $databaseUser */
         $databaseUser = \XF::finder('XF:User')->where('vatsim_id', $cid)->fetchOne();
+
         if (!$databaseUser) {
+            // Find the first available username
+            $count = 1;
+            $fullDBName = $fullName;
+            while (\XF::finder('XF:User')->where('username', $fullDBName)->total() > 0) {
+                $fullDBName = $fullName . ' ' . $count;
+                $count++;
+            }
+
             /** @var User $userRepository */
             $userRepository = $this->repository('XF:User');
             $baseUser = $userRepository->setupBaseUser();
@@ -72,11 +80,11 @@ class ConnectController extends AbstractController
 
             $baseUser["vatsim_id"] = $cid;
             $baseUser["email"] = $email;
-            $baseUser["username"] = $fullName;
+            $baseUser["username"] = $fullDBName;
             $baseUser[Setup::$OAUTH_DB_AUTH_COLUMN] = $tokens['access_token'];
             $baseUser[Setup::$OAUTH_DB_REFRESH_COLUMN] = $tokens['refresh_token'];
 
-            $baseUser->custom_title = $cid;
+            $baseUser->custom_title = strval($cid);
             $baseUser->Auth->setNoPassword();
             $baseUser->Profile->password_date = \XF::$time;
 
@@ -97,6 +105,8 @@ class ConnectController extends AbstractController
             }
         }
 
+        // Update the user whilst we're here...
+        $databaseUser->email = $email;
         $databaseUser[Setup::$OAUTH_DB_AUTH_COLUMN] = $tokens['access_token'];
         $databaseUser[Setup::$OAUTH_DB_REFRESH_COLUMN] = $tokens['refresh_token'];
         $databaseUser->save();

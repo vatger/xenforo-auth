@@ -6,7 +6,7 @@
     "validation_class": "",
     "validation_method": "",
     "advanced": false,
-    "default_value": "https://auth-dev.vatsim.net",
+    "default_value": "https://auth-dev.vatsim.net/oauth/token",
     "relations": {
         "vatgerAuth": 1
     }
