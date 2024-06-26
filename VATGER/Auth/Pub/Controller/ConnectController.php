@@ -93,7 +93,7 @@ class ConnectController extends AbstractController
 
             // Inform the homepage of this new user.
             try {
-                \XF::app()->http()->client()->post($this->options()['homepage_callback'], [
+                $response = \XF::app()->http()->client()->post($this->options()['homepage_callback'], [
                     'json' => [
                         'vatsim_id' => $cid,
                         'forum_id' => $baseUser['user_id']
@@ -102,9 +102,13 @@ class ConnectController extends AbstractController
                         'Authorization' => 'Token ' . $this->options()['homepage_token']
                     ]
                 ]);
-            } catch (\Exception $exception) {
+
+                if ($response->getStatusCode() != 200) {
+                    throw new \Exception();
+                }
+            } catch (\Exception $e) {
                 $baseUser->delete();
-                return $this->error(self::$GENERIC_ERROR_MESSAGE, $exception->getMessage());
+                return $this->error("Failed to assign a homepage account.", 400);
             }
         }
 
