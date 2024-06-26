@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-  <template type="public" title="PAGE_CONTAINER" version_id="5" version_string="0.0.5"><![CDATA[<!DOCTYPE html>
+  <template type="public" title="PAGE_CONTAINER" version_id="12" version_string="1.0.2"><![CDATA[<!DOCTYPE html>
 <html id="XF" lang="{$xf.language.language_code}" dir="{$xf.language.text_direction}"
 	data-app="public"
 	data-template="{$template}"
@@ -284,9 +284,15 @@
 							</div>
 						</xf:if>
 					<xf:else />
-						<a href="/oauth" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
-							<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
-						</a>
+						<xf:if is="$xf.options.boardActive">
+							<a href="/oauth" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+								<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+							</a>
+							<xf:else />
+							<a href="/login" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+								<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+							</a>
+						</xf:if>
 						<!--
 						<xf:if is="$xf.options.registrationSetup.enabled">
 							<a href="{{ link('register') }}" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--register"

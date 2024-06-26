@@ -2,6 +2,8 @@
 
 namespace VATGER\Auth\Pub\Controller;
 
+use VATGER\Auth\Setup;
+
 class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
 {
     public function actionIndex()
@@ -37,6 +39,10 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
         if ($targetAccount == null || !$this->_checkAllowedToUse($targetAccount)) {
             return $this->error("Internal server error");
         }
+
+        $logFile = fopen(Setup::$LOG_PATH, "a");
+        fwrite($logFile, "User: " . \XF::visitor()->username . " used functional account: " . $targetAccount->username);
+        fclose($logFile);
 
         $previousUserID = \XF::visitor()->user_id;
         $this->session()->logoutUser();
@@ -86,6 +92,11 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
 
     private function _checkAllowedToUse(\XF\Entity\User $account): bool
     {
+        if (!\XF::visitor()->is_moderator || !\XF::visitor()->is_admin || !\XF::visitor()->is_super_admin) {
+            return false;
+        }
+
+        // Allow all accounts to be used
         if (\XF::visitor()->is_super_admin) {
             return true;
         }

@@ -133,10 +133,12 @@ class ConnectController extends AbstractController
 
     private function _allowLogin(): bool
     {
+        $this->assertIpNotBanned();
+
         // Potentially add some more cases in the future :)
-        if (\XF::visitor() != null)
+        if (\XF::visitor()->user_id != null || \XF::visitor()->is_banned)
         {
-            return true;
+            return false;
         }
 
         return true;

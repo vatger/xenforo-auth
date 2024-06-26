@@ -9,8 +9,13 @@ class Setup extends AbstractSetup
     public static string $OAUTH_DB_AUTH_COLUMN = "oauth_auth_token";
     public static string $OAUTH_DB_REFRESH_COLUMN = "oauth_remember_token";
 
+    public static string $LOG_PATH = "/var/log/vatger_xenforo/functional.access.log";
+
     public function install(array $stepParams = []): void
     {
+        // Create log directory
+        mkdir(self::$LOG_PATH, recursive: true);
+
         $this->schemaManager()->alterTable('xf_user', function (\XF\Db\Schema\Alter $table) {
             $table->addColumn(self::$OAUTH_DB_AUTH_COLUMN, 'text', 255)->nullable();
             $table->addColumn(self::$OAUTH_DB_REFRESH_COLUMN, 'text', 255)->nullable();

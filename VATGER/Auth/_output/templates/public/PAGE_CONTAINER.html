@@ -282,9 +282,15 @@
 							</div>
 						</xf:if>
 					<xf:else />
-						<a href="/oauth" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
-							<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
-						</a>
+						<xf:if is="$xf.options.boardActive">
+							<a href="/oauth" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+								<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+							</a>
+							<xf:else />
+							<a href="/login" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+								<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+							</a>
+						</xf:if>
 						<!--
 						<xf:if is="$xf.options.registrationSetup.enabled">
 							<a href="{{ link('register') }}" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--register"
