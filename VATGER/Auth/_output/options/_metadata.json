@@ -17,6 +17,9 @@
     "homepage_callback.json": {
         "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
     },
+    "homepage_token.json": {
+        "hash": "68c85cae57edc5a9c20d8a605fb93cb6"
+    },
     "oauth_access_token_endpoint.json": {
         "hash": "a3ccddcd9dbd59de01e81a14f42cc75e"
     },

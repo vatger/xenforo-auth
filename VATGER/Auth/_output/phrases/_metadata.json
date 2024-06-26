@@ -35,6 +35,12 @@
         "version_string": "0.0.1",
         "hash": "61f025c6b6d7f25ce22fd9de55e40793"
     },
+    "option.homepage_token.txt": {
+        "global_cache": false,
+        "version_id": 5,
+        "version_string": "0.0.5",
+        "hash": "4d93534188d0e5b4fb36bea18b9ddf35"
+    },
     "option.oauth_access_token_endpoint.txt": {
         "global_cache": false,
         "version_id": 2,
@@ -100,6 +106,12 @@
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "be8e814efb63dfcdc90c17a4a0a28eec"
+    },
+    "option_explain.homepage_token.txt": {
+        "global_cache": false,
+        "version_id": 5,
+        "version_string": "0.0.5",
+        "hash": "27a365c1d8d672b607c018b1772bbf9e"
     },
     "option_explain.oauth_access_token_endpoint.txt": {
         "global_cache": false,

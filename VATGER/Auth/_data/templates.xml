@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-  <template type="public" title="PAGE_CONTAINER" version_id="1" version_string="0.0.1"><![CDATA[<!DOCTYPE html>
+  <template type="public" title="PAGE_CONTAINER" version_id="5" version_string="0.0.5"><![CDATA[<!DOCTYPE html>
 <html id="XF" lang="{$xf.language.language_code}" dir="{$xf.language.text_direction}"
 	data-app="public"
 	data-template="{$template}"
@@ -81,7 +81,7 @@
 					</a>			
 				</xf:if>
 				
-				<xf:if is="$xf.visitor.is_moderator && $xf.session.using_functional_account">
+				<xf:if is="$xf.session.using_functional_account">
 					<a href="/functional/leave" class="p-staffBar-link">
 						Funktionsaccount Verlassen
 					</a>			

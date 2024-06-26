@@ -6,6 +6,7 @@
   <phrase title="option.email_mapping" version_id="1" version_string="0.0.1"><![CDATA[E-Mail Mapping]]></phrase>
   <phrase title="option.full_name_mapping" version_id="1" version_string="0.0.1"><![CDATA[Full Name Mapping]]></phrase>
   <phrase title="option.homepage_callback" version_id="1" version_string="0.0.1"><![CDATA[Homepage Callback URL]]></phrase>
+  <phrase title="option.homepage_token" version_id="5" version_string="0.0.5"><![CDATA[Homepage Token]]></phrase>
   <phrase title="option.oauth_access_token_endpoint" version_id="2" version_string="0.0.2"><![CDATA[Access Token Endpoint]]></phrase>
   <phrase title="option.oauth_auth_endpoint" version_id="2" version_string="0.0.2"><![CDATA[Auth Endpoint]]></phrase>
   <phrase title="option.oauth_user_endpoint" version_id="2" version_string="0.0.2"><![CDATA[User Information Endpoint]]></phrase>
@@ -32,6 +33,7 @@ If we wanted to access the cid, we would use the string: <strong>data.cid</stron
   <phrase title="option_explain.email_mapping" version_id="1" version_string="0.0.1"><![CDATA[If we wanted to access the email, we would use the string: <strong>data.personal.email</strong>.]]></phrase>
   <phrase title="option_explain.full_name_mapping" version_id="1" version_string="0.0.1"><![CDATA[If we wanted to access the full name, we would use the string: <strong>data.personal.full_name</strong>.]]></phrase>
   <phrase title="option_explain.homepage_callback" version_id="1" version_string="0.0.1"><![CDATA[The homepage callback URL is used to notify the homepage of a new client being created. It sends a post request to the specified endpoint containing the CID and Board (Forum) ID of the user in question.]]></phrase>
+  <phrase title="option_explain.homepage_token" version_id="5" version_string="0.0.5"><![CDATA[The token used for the post request to the callback method.]]></phrase>
   <phrase title="option_explain.oauth_access_token_endpoint" version_id="2" version_string="0.0.2"><![CDATA[This is the endpoint from which tokens are requested (POST).]]></phrase>
   <phrase title="option_explain.oauth_auth_endpoint" version_id="2" version_string="0.0.2"><![CDATA[This is the endpoint to which the user will be redirected.]]></phrase>
   <phrase title="option_explain.oauth_user_endpoint" version_id="2" version_string="0.0.2"><![CDATA[This is the endpoint from which the user information will be queried.]]></phrase>

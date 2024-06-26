@@ -24,6 +24,10 @@
     <default_value></default_value>
     <relation group_id="vatgerAuth" display_order="3"/>
   </option>
+  <option option_id="homepage_token" edit_format="textbox" data_type="string" advanced="0">
+    <default_value></default_value>
+    <relation group_id="vatgerAuth" display_order="3"/>
+  </option>
   <option option_id="oauth_access_token_endpoint" edit_format="textbox" data_type="string" advanced="0">
     <default_value>https://auth-dev.vatsim.net/oauth/token</default_value>
     <relation group_id="vatgerAuth" display_order="1"/>

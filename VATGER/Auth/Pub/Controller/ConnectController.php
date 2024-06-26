@@ -64,7 +64,7 @@ class ConnectController extends AbstractController
             // Find the first available username
             $count = 1;
             $fullDBName = $fullName;
-            while (\XF::finder('XF:User')->where('username', $fullDBName)->total() > 0) {
+            while (\XF::finder('XF:User')->where('username', $fullDBName)->fetch()->count() > 0) {
                 $fullDBName = $fullName . ' ' . $count;
                 $count++;
             }
@@ -95,13 +95,16 @@ class ConnectController extends AbstractController
             try {
                 \XF::app()->http()->client()->post($this->options()['homepage_callback'], [
                     'json' => [
-                        'cid' => $cid,
+                        'vatsim_id' => $cid,
                         'forum_id' => $baseUser['user_id']
+                    ],
+                    'headers' => [
+                        'Authorization' => 'Token ' . $this->options()['homepage_token']
                     ]
                 ]);
             } catch (\Exception $exception) {
-                // $baseUser->delete();
-                // return $this->error(self::$GENERIC_ERROR_MESSAGE, $exception->getMessage());
+                $baseUser->delete();
+                return $this->error(self::$GENERIC_ERROR_MESSAGE, $exception->getMessage());
             }
         }
 
