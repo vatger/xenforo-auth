@@ -104,9 +104,10 @@ class ConnectController extends AbstractController
                 ]);
 
                 if ($response->getStatusCode() != 200) {
-                    throw new \Exception();
+                    throw new \Exception("Non 200 status code. ConnectController#L107");
                 }
             } catch (\Exception $e) {
+                \XF::logError($e->getMessage(), true);
                 $baseUser->delete();
                 return $this->error("Failed to assign a homepage account.", 400);
             }

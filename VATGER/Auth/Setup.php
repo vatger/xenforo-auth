@@ -9,7 +9,7 @@ class Setup extends AbstractSetup
     public static string $OAUTH_DB_AUTH_COLUMN = "oauth_auth_token";
     public static string $OAUTH_DB_REFRESH_COLUMN = "oauth_remember_token";
 
-    public static string $LOG_PATH = "/var/log/vatger_xenforo/functional.access.log";
+    public static string $LOG_PATH = "/var/www/board.vatsim-germany.org/xf_vatger_auth_logs";
 
     public function install(array $stepParams = []): void
     {

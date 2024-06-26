@@ -54,7 +54,7 @@ class Connect extends AbstractService {
 
             return \GuzzleHttp\json_decode($tokenResponse->getBody(), true);
         } catch (RequestException $e) {
-            \XF::logException($e);
+            \XF::logError($e->getMessage(), true);
             return null;
         }
     }
@@ -70,7 +70,7 @@ class Connect extends AbstractService {
 
             return \GuzzleHttp\json_decode($userResponse->getBody(), true);
         } catch (RequestException $e) {
-            \XF::logException($e);
+            \XF::logError($e->getMessage(), true);
             return null;
         }
     }

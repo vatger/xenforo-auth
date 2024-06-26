@@ -40,7 +40,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
             return $this->error("Internal server error");
         }
 
-        $logFile = fopen(Setup::$LOG_PATH, "a");
+        $logFile = fopen(Setup::$LOG_PATH . "/functional.access.log", "a");
         fwrite($logFile, "User: " . \XF::visitor()->username . " used functional account: " . $targetAccount->username);
         fclose($logFile);
 
