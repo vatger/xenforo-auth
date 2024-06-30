@@ -41,7 +41,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
         }
 
         $logFile = fopen(Setup::$LOG_PATH . "/functional.access.log", "a");
-        fwrite($logFile, "User: " . \XF::visitor()->username . " used functional account: " . $targetAccount->username);
+        fwrite($logFile, "[" . date('d.m.Y H:i:s T') . "] " . \XF::visitor()->username . " --> " . $targetAccount->username . "\n");
         fclose($logFile);
 
         $previousUserID = \XF::visitor()->user_id;
@@ -92,7 +92,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
 
     private function _checkAllowedToUse(\XF\Entity\User $account): bool
     {
-        if (!\XF::visitor()->is_moderator || !\XF::visitor()->is_admin || !\XF::visitor()->is_super_admin) {
+        if (!\XF::visitor()->is_moderator && !\XF::visitor()->is_admin && !\XF::visitor()->is_super_admin) {
             return false;
         }
 
