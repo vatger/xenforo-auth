@@ -81,8 +81,6 @@ class ConnectController extends AbstractController
             $baseUser["vatsim_id"] = $cid;
             $baseUser["email"] = $email;
             $baseUser["username"] = $fullDBName;
-            $baseUser[Setup::$OAUTH_DB_AUTH_COLUMN] = $tokens['access_token'];
-            $baseUser[Setup::$OAUTH_DB_REFRESH_COLUMN] = $tokens['refresh_token'];
 
             $baseUser->custom_title = strval($cid);
             $baseUser->Auth->setNoPassword();
@@ -115,8 +113,6 @@ class ConnectController extends AbstractController
 
         // Update the user whilst we're here...
         $databaseUser->email = $email;
-        $databaseUser[Setup::$OAUTH_DB_AUTH_COLUMN] = $tokens['access_token'];
-        $databaseUser[Setup::$OAUTH_DB_REFRESH_COLUMN] = $tokens['refresh_token'];
         $databaseUser->save();
 
         /** @var \XF\ControllerPlugin\Login $loginPlugin */
