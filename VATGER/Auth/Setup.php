@@ -27,7 +27,7 @@ class Setup extends AbstractSetup
 
     public function upgrade(array $stepParams = []): void
     {
-        if ($this->addOn->version_id < 16) // v.1.0.6
+        if ($this->addOn->version_id < 16) // 1.0.6
         {
             $this->schemaManager()->alterTable('xf_user', function (\XF\Db\Schema\Alter $table) {
                 $table->dropColumns(['oauth_auth_token', 'oauth_remember_token']);
