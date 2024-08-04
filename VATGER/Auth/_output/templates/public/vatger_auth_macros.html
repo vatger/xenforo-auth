@@ -1,0 +1,25 @@
+<xf:macro name="functional_account_header">
+	<xf:if is="$xf.visitor.is_moderator && !$xf.session.using_functional_account">
+		<a href="/functional" class="p-staffBar-link" data-xf-click="overlay">
+			Funktionsaccounts
+		</a>			
+	</xf:if>
+
+	<xf:if is="$xf.session.using_functional_account">
+		<a href="/functional/leave" class="p-staffBar-link">
+			Funktionsaccount Verlassen
+		</a>			
+	</xf:if>
+</xf:macro>
+
+<xf:macro name="login_button">
+	<xf:if is="$xf.options.boardActive">
+		<a href="/oauth" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+			<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+		</a>
+		<xf:else />
+		<a href="/login" class="p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn">
+			<span class="p-navgroup-linkText">{{ phrase('log_in') }}</span>
+		</a>
+	</xf:if>
+</xf:macro>

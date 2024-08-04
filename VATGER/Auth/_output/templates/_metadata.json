@@ -1,12 +1,12 @@
 {
-    "public/PAGE_CONTAINER.html": {
-        "version_id": 12,
-        "version_string": "1.0.2",
-        "hash": "3439966cb6be18a245ca98e28f9f430a"
-    },
     "public/select_functional_account.html": {
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "c7b3ee613bb571d4b23d348133b384c8"
+    },
+    "public/vatger_auth_macros.html": {
+        "version_id": 17,
+        "version_string": "1.0.7",
+        "hash": "35f87ac071ff239cf1c924edad63e672"
     }
 }

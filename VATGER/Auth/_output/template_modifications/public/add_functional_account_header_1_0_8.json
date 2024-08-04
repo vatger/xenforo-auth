@@ -1,0 +1,9 @@
+{
+    "template": "PAGE_CONTAINER",
+    "description": "Adds the functional account header to the staffbar",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "str_replace",
+    "find": "\t\t\t\t\t\t<xf:if is=\"$xf.visitor.is_moderator && $xf.session.unapprovedCounts.total\">\n\t\t\t\t\t\t\t<a href=\"{{ link('approval-queue') }}\" class=\"p-staffBar-link badgeContainer badgeContainer--highlighted\" data-badge=\"{$xf.session.unapprovedCounts.total|number}\">\n\t\t\t\t\t\t\t\t{{ phrase('approval_queue') }}\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</xf:if>",
+    "replace": "\t\t\t\t\t\t<xf:macro id=\"vatger_auth_macros::functional_account_header\" name=\"functional_account_header\" template=\"vatger_auth_macros\"></xf:macro>\n\t\t\t\n\t\t\t\t\t\t<xf:if is=\"$xf.visitor.is_moderator && $xf.session.unapprovedCounts.total\">\n\t\t\t\t\t\t\t<a href=\"{{ link('approval-queue') }}\" class=\"p-staffBar-link badgeContainer badgeContainer--highlighted\" data-badge=\"{$xf.session.unapprovedCounts.total|number}\">\n\t\t\t\t\t\t\t\t{{ phrase('approval_queue') }}\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</xf:if>"
+}
