@@ -1,0 +1,1 @@
+Covers reading user group information.

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <routes>
+  <route route_type="api" route_prefix="usergroups" controller="VATGER\Auth:UserGroupsController"/>
   <route route_type="public" route_prefix="functional" controller="VATGER\Auth:FunctionalAccountController" context="functional"/>
   <route route_type="public" route_prefix="oauth" controller="VATGER\Auth:ConnectController" context="oauth"/>
 </routes>

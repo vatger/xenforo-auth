@@ -1,4 +1,10 @@
 {
+    "api_scope.usergroup_read.txt": {
+        "global_cache": false,
+        "version_id": 110,
+        "version_string": "1.1.0",
+        "hash": "c67efb7226431982e8552f78a7ccd127"
+    },
     "option.cid_mapping.txt": {
         "global_cache": false,
         "version_id": 1,

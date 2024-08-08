@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phrases>
+  <phrase title="api_scope.usergroup_read" version_id="110" version_string="1.1.0"><![CDATA[Covers reading user group information.]]></phrase>
   <phrase title="option.cid_mapping" version_id="1" version_string="0.0.1"><![CDATA[CID Mapping]]></phrase>
   <phrase title="option.client_id" version_id="1" version_string="0.0.1"><![CDATA[Client ID]]></phrase>
   <phrase title="option.client_secret" version_id="1" version_string="0.0.1"><![CDATA[Client Secret]]></phrase>
