@@ -1,0 +1,4 @@
+{
+    "api_scope_id": "moderators:write",
+    "usable_with_oauth_clients": true
+}

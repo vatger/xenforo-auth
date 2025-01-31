@@ -6,5 +6,7 @@
 
 namespace VATGER\Auth\Entity
 {
+	class XFCP_PermissionEntry extends \XF\Entity\PermissionEntry {}
+	class XFCP_User extends \XF\Entity\User {}
 	class XFCP_UserGroup extends \XF\Entity\UserGroup {}
 }

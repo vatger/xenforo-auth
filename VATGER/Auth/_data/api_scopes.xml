@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <api_scopes>
+  <api_scope api_scope_id="moderators:read"/>
+  <api_scope api_scope_id="moderators:write"/>
   <api_scope api_scope_id="usergroup:read"/>
 </api_scopes>

@@ -1,4 +1,10 @@
 {
+    "moderators-read.json": {
+        "hash": "e04ecc6cc2b90fc9182972ecc3c1d136"
+    },
+    "moderators-write.json": {
+        "hash": "f678f183ec39f53ad079729a7eea75df"
+    },
     "usergroup-read.json": {
         "hash": "be374cb9b29bdead7cf8a2b15a39c9c6"
     }

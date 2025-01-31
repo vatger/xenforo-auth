@@ -1,0 +1,1 @@
+Allows adding (super) moderators and changing their permissions.

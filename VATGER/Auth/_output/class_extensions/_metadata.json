@@ -1,5 +1,11 @@
 {
+    "XF-Entity-PermissionEntry_VATGER-Auth-Entity-PermissionEntry.json": {
+        "hash": "07ad974fac2f08a79ca409c88412c947"
+    },
     "XF-Entity-UserGroup_VATGER-Auth-Entity-UserGroup.json": {
         "hash": "d022cb7fd5084e0b4f137fdccf6586d1"
+    },
+    "XF-Entity-User_VATGER-Auth-Entity-User.json": {
+        "hash": "e42f87be4ad04aeaa66d19079ba4c71f"
     }
 }
