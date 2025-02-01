@@ -98,7 +98,7 @@ class FunctionalAccountController extends AbstractController
 
     private function _checkAllowedToUse(User $account): bool
     {
-        if (array_find_key(self::$DISALLOWED_FUNC_ACC, fn(string $accName) => $accName === $account->username) ||
+        if (array_find(self::$DISALLOWED_FUNC_ACC, fn(string $accName) => $accName === $account->username) !== null ||
             (!\XF::visitor()->is_moderator && !\XF::visitor()->is_admin && !\XF::visitor()->is_super_admin)
         ) {
             return false;
