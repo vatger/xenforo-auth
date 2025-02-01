@@ -71,6 +71,10 @@ class UserModeratorController extends AbstractController {
         $permissionEntries = [];
 
         foreach ($input as $key => $value) {
+            if (!is_numeric($key)) {
+                continue;
+            }
+
             $pgid = $value['permission_group_id'];
             $pid = $value['permission_id'];
             $pval = $value['permission_value'] ?? "allow";
