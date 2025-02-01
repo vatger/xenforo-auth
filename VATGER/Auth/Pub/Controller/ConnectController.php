@@ -3,11 +3,11 @@
 namespace VATGER\Auth\Pub\Controller;
 
 use VATGER\Auth\Service\Vatsim\Connect;
-use VATGER\Auth\Setup;
+use XF\Entity\User;
 use XF\Mvc\Reply\Redirect;
 use XF\PrintableException;
 use XF\Pub\Controller\AbstractController;
-use XF\Repository\User;
+use XF\Repository\UserRepository;
 
 class ConnectController extends AbstractController
 {
@@ -57,7 +57,7 @@ class ConnectController extends AbstractController
             return $this->error(self::$GENERIC_ERROR_MESSAGE, 400);
         }
 
-        /** @var \XF\Entity\User $databaseUser */
+        /** @var User $databaseUser */
         $databaseUser = \XF::finder('XF:User')->where('vatsim_id', $cid)->fetchOne();
 
         if (!$databaseUser) {
@@ -69,7 +69,7 @@ class ConnectController extends AbstractController
                 $count++;
             }
 
-            /** @var User $userRepository */
+            /** @var UserRepository $userRepository */
             $userRepository = $this->repository('XF:User');
             $baseUser = $userRepository->setupBaseUser();
 

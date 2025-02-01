@@ -4,9 +4,8 @@ namespace VATGER\Auth\Entity;
 
 use XF\Api\Result\EntityResult;
 use XF\Api\Result\EntityResultInterface;
-use XF\Entity\PermissionEntry as PermissionEntryBase;
 
-class PermissionEntry extends PermissionEntryBase {
+class PermissionEntry extends XFCP_PermissionEntry {
     protected function setupApiResultData(EntityResult $result, $verbosity = self::VERBOSITY_NORMAL, array $options = [])
     {
         if ($result->getResultType() === EntityResultInterface::TYPE_API) {

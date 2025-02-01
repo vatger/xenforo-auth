@@ -2,9 +2,8 @@
 namespace VATGER\Auth\Entity;
 
 use XF\Api\Result\EntityResult;
-use XF\Entity\UserGroup as UserGroupBase;
 
-class UserGroup extends UserGroupBase
+class UserGroup extends XFCP_UserGroup
 {
     /**
      * @param EntityResult $result

@@ -11,7 +11,7 @@ class UserGroupsController extends AbstractController
 {
     protected function preDispatchController($action, ParameterBag $params)
     {
-        $this->assertApiScopeByRequestMethod('usergroup');
+        $this->assertApiScopeByRequestMethod('vatger_usergroup');
     }
 
     /**

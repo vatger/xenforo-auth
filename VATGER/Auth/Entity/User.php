@@ -3,11 +3,11 @@
 namespace VATGER\Auth\Entity;
 
 use XF\Entity\Moderator;
-use XF\Entity\User as UserBase;
 use XF\Finder\ModeratorContentFinder;
 use XF\PrintableException;
 
-class User extends UserBase {
+
+class User extends XFCP_User {
     /**
      * Returns true if the user is a "normal" moderator (forum moderator)
      *
@@ -62,8 +62,33 @@ class User extends UserBase {
         $moderator->user_id = $this->user_id;
         $moderator->is_super_moderator = true;
         $moderator->extra_user_group_ids = [];
+
+        // Correspond to "Preferences > Moderator Options > Receive email when content is reported/pending approval"
+        // These are default off
+        $moderator->notify_report = true;
         $moderator->notify_approval = false;
-        $moderator->notify_report = false;
         $moderator->save();
+    }
+
+    public function deletePermissionEntries(): int
+    {
+        return $this->db()->delete("xf_permission_entry", "user_id = ? AND user_group_id = 0", $this->user_id);
+    }
+
+    /**
+     * @throws PrintableException
+     */
+    public function deleteSuperModerator(): bool {
+        if (!self::isSuperModerator()) {
+            return false;
+        }
+
+        $moderator = $this->Moderator;
+        if ($moderator != null && $moderator->is_super_moderator) {
+            $moderator->delete();
+            return true;
+        }
+
+        return false;
     }
 }

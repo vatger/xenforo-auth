@@ -3,9 +3,15 @@
 namespace VATGER\Auth\Pub\Controller;
 
 use VATGER\Auth\Setup;
+use XF\ControllerPlugin\LoginPlugin;
+use XF\Entity\User;
+use XF\Pub\Controller\AbstractController;
 
-class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
+class FunctionalAccountController extends AbstractController
 {
+    // Don't allow anyone to use "XF Support Admin" or "VATSIM Migration" accounts!
+    private static array $DISALLOWED_FUNC_ACC = ['XF Support Admin', 'VATSIM Migration'];
+
     public function actionIndex()
     {
         $functionalAccounts = \XF::finder("XF:User")
@@ -30,7 +36,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
             return $this->redirect($this->_getHomeViewRedirect());
         }
 
-        /** @var \XF\Entity\User $targetAccount */
+        /** @var User $targetAccount */
         $targetAccount = \XF::finder("XF:User")
             ->where('user_id', '=', $requestParams['account_id'])
             ->where('custom_title', '=', '')
@@ -47,7 +53,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
         $previousUserID = \XF::visitor()->user_id;
         $this->session()->logoutUser();
 
-        /** @var \XF\ControllerPlugin\Login $loginPlugin */
+        /** @var Login $loginPlugin */
         $loginPlugin = $this->plugin('XF:Login');
 
         $loginPlugin->completeLogin($targetAccount, false);
@@ -67,7 +73,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
 
         $previousUserID = $this->session()->get('previous_user_id');
 
-        /** @var \XF\Entity\User $userAccount */
+        /** @var User $userAccount */
         $userAccount = \XF::finder('XF:User')
             ->where('user_id', '=', $previousUserID)
             ->fetchOne();
@@ -82,7 +88,7 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
 
         $this->session()->logoutUser();
 
-        /** @var \XF\ControllerPlugin\Login $loginPlugin */
+        /** @var LoginPlugin $loginPlugin */
         $loginPlugin = $this->plugin('XF:Login');
 
         $loginPlugin->completeLogin($userAccount, true);
@@ -90,14 +96,16 @@ class FunctionalAccountController extends \XF\Pub\Controller\AbstractController
         return $this->redirect($this->_getHomeViewRedirect());
     }
 
-    private function _checkAllowedToUse(\XF\Entity\User $account): bool
+    private function _checkAllowedToUse(User $account): bool
     {
-        if (!\XF::visitor()->is_moderator && !\XF::visitor()->is_admin && !\XF::visitor()->is_super_admin) {
+        if (array_find_key(self::$DISALLOWED_FUNC_ACC, fn(string $accName) => $accName === $account->username) ||
+            (!\XF::visitor()->is_moderator && !\XF::visitor()->is_admin && !\XF::visitor()->is_super_admin)
+        ) {
             return false;
         }
 
-        // Allow all accounts to be used
-        if (\XF::visitor()->is_super_admin) {
+        // Allow all accounts to be used if Admin or Super-Admin
+        if (\XF::visitor()->is_super_admin || \XF::visitor()->is_admin) {
             return true;
         }
 

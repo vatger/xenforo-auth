@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <routes>
   <route route_type="api" route_prefix="moderators" format=":+int&lt;user_id&gt;/" controller="VATGER\Auth:UserModeratorController"/>
-  <route route_type="api" route_prefix="moderators" sub_name="permissions" format="permissions/:+int&lt;user_id&gt;/" controller="VATGER\Auth:UserModeratorPermissionController"/>
   <route route_type="api" route_prefix="usergroups" controller="VATGER\Auth:UserGroupsController"/>
   <route route_type="public" route_prefix="functional" controller="VATGER\Auth:FunctionalAccountController" context="functional"/>
   <route route_type="public" route_prefix="oauth" controller="VATGER\Auth:ConnectController" context="oauth"/>
