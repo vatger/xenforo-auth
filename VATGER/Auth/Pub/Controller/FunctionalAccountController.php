@@ -16,6 +16,7 @@ class FunctionalAccountController extends AbstractController
     {
         $functionalAccounts = \XF::finder("XF:User")
             ->where('custom_title', '=', '')
+            ->order('username', 'ASC')
             ->fetch();
 
         $allowedAccounts = [];
