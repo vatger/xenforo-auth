@@ -10,7 +10,7 @@ use XF\Pub\Controller\AbstractController;
 class FunctionalAccountController extends AbstractController
 {
     // Don't allow anyone to use "XF Support Admin" or "VATSIM Migration" accounts!
-    private static array $DISALLOWED_FUNC_ACC = ['XF Support Admin', 'VATSIM Migration'];
+    private static array $DISALLOWED_FUNC_ACC = ['Administrator', 'XF Support Admin', 'VATSIM Migration'];
 
     public function actionIndex()
     {
