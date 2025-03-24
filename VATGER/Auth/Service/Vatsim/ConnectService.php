@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use XF\Service\AbstractService;
 
-class Connect extends AbstractService {
+class ConnectService extends AbstractService {
     protected Client $client;
     protected array $connectOptions;
 

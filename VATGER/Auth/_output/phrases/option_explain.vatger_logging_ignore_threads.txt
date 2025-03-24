@@ -1,0 +1,1 @@
+Any of the threads listed here will be ignored when logging moderative actions. This can - for example - be useful for booking-threads.

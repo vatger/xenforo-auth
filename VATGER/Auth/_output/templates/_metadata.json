@@ -1,4 +1,9 @@
 {
+    "admin/option_template_vatger_ignoreModeration.html": {
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "584580fbd008d8254fff0a135a88f54f"
+    },
     "public/select_functional_account.html": {
         "version_id": 1,
         "version_string": "0.0.1",

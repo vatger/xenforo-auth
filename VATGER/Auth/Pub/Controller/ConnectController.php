@@ -2,8 +2,12 @@
 
 namespace VATGER\Auth\Pub\Controller;
 
-use VATGER\Auth\Service\Vatsim\Connect;
-use XF\Entity\User;
+use GuzzleHttp\Exception\GuzzleException;
+use VATGER\Auth\Service\Vatsim\ConnectService;
+use XF\ControllerPlugin\LoginPlugin;
+use XF\Finder\UserFinder;
+use XF\Mvc\Reply\Error;
+use XF\Mvc\Reply\Exception;
 use XF\Mvc\Reply\Redirect;
 use XF\PrintableException;
 use XF\Pub\Controller\AbstractController;
@@ -13,29 +17,32 @@ class ConnectController extends AbstractController
 {
     protected static string $GENERIC_ERROR_MESSAGE = "An internal error occurred. Please try again later or contact an administrator.";
 
+    /**
+     * @throws Exception
+     */
     public function actionIndex(): Redirect
     {
         if (!$this->_allowLogin()) {
             return $this->redirect($this->_getHomeViewRedirect());
         }
 
-        /** @var Connect $connectService */
-        $connectService = $this->service('VATGER\Auth:Vatsim\Connect', $this->options());
+        /** @var ConnectService $connectService */
+        $connectService = $this->service(ConnectService::class, $this->options());
 
         return $this->redirect($connectService->getRedirectURI());
     }
 
     /**
-     * @throws PrintableException
+     * @throws PrintableException|GuzzleException|Exception
      */
-    public function actionCallback()
+    public function actionCallback(): Redirect|Error
     {
         if (!$this->_allowLogin()) {
             return $this->redirect($this->_getHomeViewRedirect());
         }
 
-        /** @var Connect $connectService */
-        $connectService = $this->service('VATGER\Auth:Vatsim\Connect', $this->options());
+        /** @var ConnectService $connectService */
+        $connectService = $this->service(ConnectService::class, $this->options());
 
         $requestParams = $this->request->getRequestQueryParams();
 
@@ -57,20 +64,20 @@ class ConnectController extends AbstractController
             return $this->error(self::$GENERIC_ERROR_MESSAGE, 400);
         }
 
-        /** @var User $databaseUser */
-        $databaseUser = \XF::finder('XF:User')->where('vatsim_id', $cid)->fetchOne();
+        /** @var UserFinder $databaseUser */
+        $databaseUser = \XF::finder(UserFinder::class)->where('vatsim_id', $cid)->fetchOne();
 
         if (!$databaseUser) {
             // Find the first available username
             $count = 1;
             $fullDBName = $fullName;
-            while (\XF::finder('XF:User')->where('username', $fullDBName)->fetch()->count() > 0) {
+            while (\XF::finder(UserFinder::class)->where('username', $fullDBName)->fetch()->count() > 0) {
                 $fullDBName = $fullName . ' ' . $count;
                 $count++;
             }
 
             /** @var UserRepository $userRepository */
-            $userRepository = $this->repository('XF:User');
+            $userRepository = $this->repository(UserRepository::class);
             $baseUser = $userRepository->setupBaseUser();
 
             if ($baseUser == null) {
@@ -115,19 +122,21 @@ class ConnectController extends AbstractController
         $databaseUser->email = $email;
         $databaseUser->save();
 
-        /** @var \XF\ControllerPlugin\Login $loginPlugin */
-        $loginPlugin = $this->plugin('XF:Login');
-
+        /** @var LoginPlugin $loginPlugin */
+        $loginPlugin = $this->plugin(LoginPlugin::class);
         $loginPlugin->completeLogin($databaseUser, true);
 
         return $this->redirect($this->_getHomeViewRedirect());
     }
 
-    private function _getHomeViewRedirect()
+    private function _getHomeViewRedirect(): string
     {
         return $this->getDynamicRedirectIfNot($this->buildLink('index'));
     }
 
+    /**
+     * @throws Exception
+     */
     private function _allowLogin(): bool
     {
         $this->assertIpNotBanned();

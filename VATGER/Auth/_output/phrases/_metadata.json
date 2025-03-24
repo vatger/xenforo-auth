@@ -119,6 +119,12 @@
         "version_string": "0.0.1",
         "hash": "48b26d57c14af0500090800c2cdd0d58"
     },
+    "option.vatger_logging_ignore_threads.txt": {
+        "global_cache": false,
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "e01ec3ac62cb4d7c2c6f27280820d00b"
+    },
     "option_explain.cid_mapping.txt": {
         "global_cache": false,
         "version_id": 1,
@@ -191,16 +197,34 @@
         "version_string": "0.0.1",
         "hash": "bdd5e290bd969e459698a6e129e8f2b0"
     },
+    "option_explain.vatger_logging_ignore_threads.txt": {
+        "global_cache": false,
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "e677074f463b0114e2d72a26cbeb66ba"
+    },
     "option_group.vatgerAuth.txt": {
         "global_cache": false,
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "0a89d4dfb891dfa5727e714c9b58ae38"
     },
+    "option_group.vatgerModeration.txt": {
+        "global_cache": false,
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "9f93bc674e844a1a629a25abdd792167"
+    },
     "option_group_description.vatgerAuth.txt": {
         "global_cache": false,
         "version_id": 1,
         "version_string": "0.0.1",
         "hash": "aef58c9f106f1e5b3b8051574c48159f"
+    },
+    "option_group_description.vatgerModeration.txt": {
+        "global_cache": false,
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "59d6ab2e437ed76a53ebd8e88f8cae0d"
     }
 }

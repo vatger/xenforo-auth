@@ -34,5 +34,8 @@
     },
     "scopes.json": {
         "hash": "d9efb782e7dce7eda4c96beb205a41ce"
+    },
+    "vatger_logging_ignore_threads.json": {
+        "hash": "7bd84acaa13e3b90588aba35889a4ee6"
     }
 }

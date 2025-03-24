@@ -5,16 +5,25 @@ namespace VATGER\Auth\Pub\Controller;
 use VATGER\Auth\Setup;
 use XF\ControllerPlugin\LoginPlugin;
 use XF\Entity\User;
+use XF\Finder\UserFinder;
+use XF\Mvc\Reply\Error;
+use XF\Mvc\Reply\Redirect;
+use XF\Mvc\Reply\View;
 use XF\Pub\Controller\AbstractController;
 
 class FunctionalAccountController extends AbstractController
 {
-    // Don't allow anyone to use "XF Support Admin" or "VATSIM Migration" accounts!
+    /**
+     * We don't allow anyone to use the following accounts.
+     *
+     * @var array|string[]
+     */
     private static array $DISALLOWED_FUNC_ACC = ['Administrator', 'XF Support Admin', 'VATSIM Migration'];
 
-    public function actionIndex()
+    public function actionIndex(): View
     {
-        $functionalAccounts = \XF::finder("XF:User")
+        /** @var UserFinder $functionalAccounts */
+        $functionalAccounts = \XF::finder(UserFinder::class)
             ->where('custom_title', '=', '')
             ->order('username', 'ASC')
             ->fetch();
@@ -30,15 +39,15 @@ class FunctionalAccountController extends AbstractController
         return $this->view('VATGER\Auth:View', 'select_functional_account', ['functionalAccounts' => $allowedAccounts, 'accountCount' => count($allowedAccounts)]);
     }
 
-    public function actionUse()
+    public function actionUse(): Redirect|Error
     {
         $requestParams = $this->request->getRequestQueryParams();
         if (!key_exists('account_id', $requestParams)) {
             return $this->redirect($this->_getHomeViewRedirect());
         }
 
-        /** @var User $targetAccount */
-        $targetAccount = \XF::finder("XF:User")
+        /** @var User|null $targetAccount */
+        $targetAccount = \XF::finder(UserFinder::class)
             ->where('user_id', '=', $requestParams['account_id'])
             ->where('custom_title', '=', '')
             ->fetchOne();
@@ -54,8 +63,8 @@ class FunctionalAccountController extends AbstractController
         $previousUserID = \XF::visitor()->user_id;
         $this->session()->logoutUser();
 
-        /** @var Login $loginPlugin */
-        $loginPlugin = $this->plugin('XF:Login');
+        /** @var LoginPlugin $loginPlugin */
+        $loginPlugin = $this->plugin(LoginPlugin::class);
 
         $loginPlugin->completeLogin($targetAccount, false);
 
@@ -65,7 +74,7 @@ class FunctionalAccountController extends AbstractController
         return $this->redirect($this->_getHomeViewRedirect());
     }
 
-    public function actionLeave()
+    public function actionLeave(): Redirect
     {
         if (!$this->session()->keyExists('previous_user_id')) {
             $this->session()->logoutUser();
@@ -75,7 +84,7 @@ class FunctionalAccountController extends AbstractController
         $previousUserID = $this->session()->get('previous_user_id');
 
         /** @var User $userAccount */
-        $userAccount = \XF::finder('XF:User')
+        $userAccount = \XF::finder(UserFinder::class)
             ->where('user_id', '=', $previousUserID)
             ->fetchOne();
 
@@ -90,7 +99,7 @@ class FunctionalAccountController extends AbstractController
         $this->session()->logoutUser();
 
         /** @var LoginPlugin $loginPlugin */
-        $loginPlugin = $this->plugin('XF:Login');
+        $loginPlugin = $this->plugin(LoginPlugin::class);
 
         $loginPlugin->completeLogin($userAccount, true);
 
@@ -116,7 +125,7 @@ class FunctionalAccountController extends AbstractController
         return count(array_intersect($currentUserGroups, $accountUserGroups)) > 0;
     }
 
-    private function _getHomeViewRedirect()
+    private function _getHomeViewRedirect(): string
     {
         return $this->getDynamicRedirectIfNot($this->buildLink('index'));
     }
