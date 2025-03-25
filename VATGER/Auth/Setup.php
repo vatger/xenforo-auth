@@ -6,6 +6,7 @@ use VATGER\Auth\Helpers\ModerationLogType;
 use XF\AddOn\AbstractSetup;
 use XF\AddOn\StepRunnerInstallTrait;
 use XF\AddOn\StepRunnerUpgradeTrait;
+use XF\Db\Schema\Create;
 
 class Setup extends AbstractSetup
 {
@@ -52,13 +53,23 @@ class Setup extends AbstractSetup
             $table->addColumn('user_id', 'int');
             $table->addColumn('thread_id', 'int')->nullable();
             $table->addColumn('post_id', 'int')->nullable();
+            $table->addColumn('reason', 'text')->nullable();
             $table->addColumn('message', 'text')->nullable();
             $table->addColumn('change_type', 'enum')->values([
                 ModerationLogType::MOVE->toString(),
                 ModerationLogType::DELETE_SOFT->toString(),
-                ModerationLogType::DELETE_HARD->toString()
+                ModerationLogType::DELETE_HARD->toString(),
+                ModerationLogType::UNDELETED->toString(),
             ]);
             $table->addColumn('date', 'int');
+        });
+
+        // This table contains an entry referencing the moderation_log entry (by id), IFF change_type == DELETE_HARD!
+        $this->schemaManager()->createTable('xf_vatger_post_content', function (Create $table) {
+            $table->addColumn('id', 'int')->primaryKey()->autoIncrement();
+            $table->addColumn('vatger_moderation_log_id', 'int');
+            $table->addColumn('user_id', 'int');
+            $table->addColumn('content', 'mediumtext');
         });
     }
 }

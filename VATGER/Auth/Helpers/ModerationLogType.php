@@ -12,6 +12,7 @@ enum ModerationLogType
     case MOVE;
     case DELETE_HARD;
     case DELETE_SOFT;
+    case UNDELETED;
 
     public function toString(): string
     {
@@ -19,6 +20,7 @@ enum ModerationLogType
             ModerationLogType::MOVE => 'move',
             ModerationLogType::DELETE_SOFT => 'soft_delete',
             ModerationLogType::DELETE_HARD => 'hard_delete',
+            ModerationLogType::UNDELETED => 'undeleted',
         };
     }
 }

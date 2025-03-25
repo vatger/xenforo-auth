@@ -41,12 +41,25 @@ class Thread extends XFCP_Thread {
 
     protected function threadHidden($hardDelete = false): void
     {
+        if (!$hardDelete) {
+            /** @var ModeratorLogCreatorService $creatorService */
+            $creatorService = $this->app()->service(ModeratorLogCreatorService::class);
+
+            $creatorService->setThreadSoftDeleteDetails($this);
+            $creatorService->save();
+        }
+
+        parent::threadHidden($hardDelete);
+    }
+
+    protected function threadMadeVisible(): void
+    {
         /** @var ModeratorLogCreatorService $creatorService */
         $creatorService = $this->app()->service(ModeratorLogCreatorService::class);
 
-        $creatorService->setThreadSoftDeleteDetails($this);
+        $creatorService->setThreadMadeVisibleDetails($this);
         $creatorService->save();
 
-        parent::threadHidden($hardDelete);
+        parent::threadMadeVisible();
     }
 }

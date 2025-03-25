@@ -15,6 +15,7 @@ use XF\Mvc\Entity\Structure;
  * @property int $user_id
  * @property int|null $thread_id
  * @property int|null $post_id
+ * @property string|null $reason
  * @property string|null $message
  * @property string $change_type
  * @property int $date
@@ -23,22 +24,20 @@ use XF\Mvc\Entity\Structure;
  * @property-read User|null $User
  * @property-read Thread|null $Thread
  * @property-read Post|null $Post
+ * @property-read VatgerPostContent[] $PostContents
  */
 class VatgerModerationLog extends Entity {
-    public const string MOVE = "move";
-    public const string HARD_DELETE = "hard_delete";
-    public const string SOFT_DELETE = "soft_delete";
-
     public static function getStructure(Structure $structure)
     {
         $structure->table = 'xf_vatger_moderation_logs';
         $structure->shortName = 'VATGER\Auth:VatgerModerationLog';
         $structure->primaryKey = 'id';
         $structure->columns = [
-            'id' => ['type' => self::UINT, 'autoIncrement' => true],
+            'id' => ['type' => self::UINT, 'primary' => true, 'autoIncrement' => true],
             'user_id' => ['type' => self::INT, 'required' => true],
             'thread_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
             'post_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
+            'reason' => ['type' => self::STR, 'required' => false, 'nullable' => true],
             'message' => ['type' => self::STR, 'required' => false, 'nullable' => true],
             'change_type' => ['type' => self::STR, 'required' => true],
             'date' => ['type' => self::UINT, 'default' => time(), 'required' => true]
@@ -62,6 +61,12 @@ class VatgerModerationLog extends Entity {
                 'type' => self::TO_ONE,
                 'conditions' => 'post_id',
                 'primary' => false
+            ],
+            'PostContents' => [
+                'entity' => 'VATGER\Auth:VatgerPostContent',
+                'type' => self::TO_MANY,
+                'conditions' => [['vatger_moderation_log_id', '=', '$id']],
+                'primary' => true
             ]
         ];
 
@@ -74,12 +79,11 @@ class VatgerModerationLog extends Entity {
         $result->includeColumn('user_id');
         $result->includeColumn('thread_id');
         $result->includeColumn('post_id');
+        $result->includeColumn('reason');
         $result->includeColumn('message');
         $result->includeColumn('change_type');
         $result->includeColumn('date');
 
-        $result->user = $this->User?->username ?? null;
-        $result->thread = $this->Thread?->title ?? null;
-        $result->post = $this->Post?->message ?? null;
+        $result->postContent = $this->PostContents;
     }
 }
