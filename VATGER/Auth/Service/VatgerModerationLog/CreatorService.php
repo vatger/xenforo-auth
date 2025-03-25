@@ -45,7 +45,7 @@ class CreatorService extends AbstractService {
         $this->changeType = null;
     }
 
-    public function setMoveDetails(Thread $thread, Forum $from, Forum $to): void
+    public function setThreadMoveDetails(Thread $thread, Forum $from, Forum $to): void
     {
         $this->changeType = ModerationLogType::MOVE;
         $this->thread = $thread;
@@ -53,14 +53,14 @@ class CreatorService extends AbstractService {
                          "to {$to->title} ({$to->node_id}) by {$this->user?->username}";
     }
 
-    public function setSoftDeleteDetails(Thread $thread): void
+    public function setThreadSoftDeleteDetails(Thread $thread): void
     {
         $this->changeType = ModerationLogType::DELETE_SOFT;
         $this->thread = $thread;
         $this->message = "Thread {$thread->title} hidden by {$this->user?->username}";
     }
 
-    public function setHardDeleteDetails(Thread $thread): void {
+    public function setThreadHardDeleteDetails(Thread $thread): void {
         $this->changeType = ModerationLogType::DELETE_HARD;
         $this->thread = $thread;
         $this->message = "Thread {$thread->title} deleted by {$this->user?->username}";
