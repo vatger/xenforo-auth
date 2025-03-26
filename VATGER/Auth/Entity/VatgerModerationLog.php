@@ -13,11 +13,13 @@ use XF\Mvc\Entity\Structure;
  * COLUMNS
  * @property int $id
  * @property int $user_id
+ * @property string $ip_address
  * @property int|null $thread_id
  * @property int|null $post_id
  * @property string|null $reason
  * @property string|null $message
  * @property string $change_type
+ * @property string $content_type
  * @property int $date
  *
  * RELATIONS
@@ -35,11 +37,13 @@ class VatgerModerationLog extends Entity {
         $structure->columns = [
             'id' => ['type' => self::UINT, 'primary' => true, 'autoIncrement' => true],
             'user_id' => ['type' => self::INT, 'required' => true],
+            'ip_address' => ['type' => self::STR, 'required' => true],
             'thread_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
             'post_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
             'reason' => ['type' => self::STR, 'required' => false, 'nullable' => true],
             'message' => ['type' => self::STR, 'required' => false, 'nullable' => true],
             'change_type' => ['type' => self::STR, 'required' => true],
+            'content_type' => ['type' => self::STR, 'required' => true],
             'date' => ['type' => self::UINT, 'default' => time(), 'required' => true]
         ];
         $structure->getters = [];
@@ -77,11 +81,13 @@ class VatgerModerationLog extends Entity {
     {
         $result->includeColumn('id');
         $result->includeColumn('user_id');
+        $result->includeColumn('ip_address');
         $result->includeColumn('thread_id');
         $result->includeColumn('post_id');
         $result->includeColumn('reason');
         $result->includeColumn('message');
         $result->includeColumn('change_type');
+        $result->includeColumn('content_type');
         $result->includeColumn('date');
 
         $result->postContent = $this->PostContents;

@@ -1,0 +1,92 @@
+<xf:title>{{ phrase('moderator_log') }}</xf:title>
+
+<xf:if is="$entries is not empty">
+	<xf:form action="{{ link('vatger/logs/moderator') }}" class="block">
+		<div class="block-container">
+			<div class="block-body">
+				<div class="block-row">
+					<span style="vertical-align: middle">
+						Filter by user:
+						<xf:select name="user_id" value="{$userId}" class="input--inline">
+							<xf:option value="">Any</xf:option>
+							<xf:options source="$logUsers" />
+						</xf:select>
+					</span>
+				</div>
+
+				<div class="block-row">
+					<span style="vertical-align: middle">
+						Filter by action:
+						<xf:select name="change_type" value="{$changeType}" class="input--inline">
+							<xf:option value="">Any</xf:option>
+							<xf:option value="move">Move</xf:option>
+							<xf:option value="soft_delete">Soft-Delete</xf:option>
+							<xf:option value="hard_delete">Hard-Delete</xf:option>
+							<xf:option value="undeleted">Undeleted</xf:option>
+						</xf:select>
+					</span>
+				</div>
+
+				<div class="block-row">
+					<span style="vertical-align: middle">
+						Filter by type:
+						<xf:select name="content_type" value="{$contentType}" class="input--inline">
+							<xf:option value="">Any</xf:option>
+							<xf:option value="thread">Thread</xf:option>
+							<xf:option value="post">Post</xf:option>
+						</xf:select>
+					</span>
+				</div>
+
+				<div class="block-row">
+					<xf:button type="submit">{{ phrase('filter') }}</xf:button>
+				</div>
+			</div>
+		</div>
+	</xf:form>
+
+	<div class="block">
+		<div class="block-container">
+			<div class="block-body">
+				<xf:datalist data-xf-init="responsive-data-list">
+					<xf:datarow rowtype="header">
+						<xf:cell>Action</xf:cell>
+						<xf:cell>User</xf:cell>
+						<xf:cell>IP Address</xf:cell>
+						<xf:cell>Date</xf:cell>
+					</xf:datarow>
+					<xf:foreach loop="$entries" value="$entry">
+						<xf:datarow>
+							<xf:cell>
+								<div>
+									<a href="{{ link('vatger/logs/moderator', {'log_id': $entry.id}) }}" data-xf-click="overlay">
+										<xf:macro 
+											template="vatger_logging_change_type_macro" 
+											name="vatger_change_type_macro" 
+											arg-changeType="{{$entry.change_type}}"
+											arg-contentType="{{$entry.content_type}}"
+										/>
+									</a>
+									<div class="dataList-subRow">{$entry.message}</div>
+								</div>
+							</xf:cell>
+							<xf:cell><xf:username user="$entry.User" href="{{ link('users/edit', $entry.User) }}" /></xf:cell>
+							<xf:cell class="u-ltr">{{ $entry.ip_address ? $entry.ip_address|ip : '' }}</xf:cell>
+							<xf:cell>
+								<xf:date time="$entry.date"/>
+							</xf:cell>
+						</xf:datarow>
+					</xf:foreach>
+				</xf:datalist>
+			</div>
+			<div class="block-footer">
+				<span class="block-footer-counter">{{ display_totals($entries, $total) }}</span>
+			</div>
+		</div>
+		<xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}"
+			link="logs/moderator" params="{$linkFilters}"
+			wrapperclass="block-outer block-outer--after" />
+	</div>
+<xf:else />
+	<div class="blockMessage">{{ phrase('no_entries_have_been_logged') }}</div>
+</xf:if>

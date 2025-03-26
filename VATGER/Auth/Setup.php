@@ -2,6 +2,7 @@
 
 namespace VATGER\Auth;
 
+use VATGER\Auth\Helpers\ModerationContentType;
 use VATGER\Auth\Helpers\ModerationLogType;
 use XF\AddOn\AbstractSetup;
 use XF\AddOn\StepRunnerInstallTrait;
@@ -51,6 +52,7 @@ class Setup extends AbstractSetup
         $this->schemaManager()->createTable('xf_vatger_moderation_logs', function (\XF\Db\Schema\Create $table) {
             $table->addColumn('id', 'int')->primaryKey()->autoIncrement();
             $table->addColumn('user_id', 'int');
+            $table->addColumn('ip_address', 'varbinary', 16)->setDefault('');
             $table->addColumn('thread_id', 'int')->nullable();
             $table->addColumn('post_id', 'int')->nullable();
             $table->addColumn('reason', 'text')->nullable();
@@ -60,6 +62,10 @@ class Setup extends AbstractSetup
                 ModerationLogType::DELETE_SOFT->toString(),
                 ModerationLogType::DELETE_HARD->toString(),
                 ModerationLogType::UNDELETED->toString(),
+            ]);
+            $table->addColumn('content_type', 'enum')->values([
+                ModerationContentType::POST->toString(),
+                ModerationContentType::THREAD->toString(),
             ]);
             $table->addColumn('date', 'int');
         });

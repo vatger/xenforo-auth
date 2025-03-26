@@ -4,6 +4,7 @@ namespace VATGER\Auth\Service\VatgerModerationLog;
 
 use VATGER\Auth\Entity\VatgerModerationLog;
 use VATGER\Auth\Entity\VatgerPostContent;
+use VATGER\Auth\Helpers\ModerationContentType;
 use VATGER\Auth\Helpers\ModerationLogType;
 use XF;
 use XF\App;
@@ -13,6 +14,7 @@ use XF\Entity\Thread;
 use XF\Entity\User;
 use XF\Service\AbstractService;
 use XF\Service\ValidateAndSavableTrait;
+use XF\Util\Ip;
 
 class CreatorService extends AbstractService {
     use ValidateAndSavableTrait;
@@ -25,6 +27,7 @@ class CreatorService extends AbstractService {
     private string|null $reason;
     private string|null $message;
     private ModerationLogType|null $changeType;
+    private ModerationContentType|null $contentType;
 
     public function __construct(App $app)
     {
@@ -51,42 +54,54 @@ class CreatorService extends AbstractService {
     public function setThreadMoveDetails(Thread $thread, Forum $from, Forum $to): void
     {
         $this->changeType = ModerationLogType::MOVE;
+        $this->contentType = ModerationContentType::THREAD;
         $this->thread = $thread;
-        $this->message = "Thread {$this->thread->title} moved from {$from->title} ({$from->node_id})" .
-                         "to {$to->title} ({$to->node_id}) by {$this->user?->username}";
+        $this->message = "{$this->thread->title} moved from {$from->title} ({$from->node_id}) to {$to->title} ({$to->node_id})";
     }
 
     public function setPostHardDeleteDetails(Post $post): void {
         $this->changeType = ModerationLogType::DELETE_HARD;
+        $this->contentType = ModerationContentType::POST;
         $this->post = $post;
-        $this->message = "Post {$post->post_id} (in thread {$post->Thread->title}) deleted by {$this->user?->username}";
+        $this->message = "#{$post->post_id} (in thread {$post->Thread->title})";
     }
 
     public function setThreadHardDeleteDetails(Thread $thread): void {
         $this->changeType = ModerationLogType::DELETE_HARD;
+        $this->contentType = ModerationContentType::THREAD;
         $this->thread = $thread;
-        $this->message = "Thread {$thread->title} deleted by {$this->user?->username}";
+        $this->message = "{$thread->title}";
     }
 
     public function setPostSoftDeleteDetails(Post $post): void {
         $this->changeType = ModerationLogType::DELETE_SOFT;
+        $this->contentType = ModerationContentType::POST;
         $this->post = $post;
         $this->reason = $post->DeletionLog->delete_reason;
-        $this->message = "Post {$post->post_id} (in thread {$post->Thread->title}) hidden by {$this->user?->username}";
+        $this->message = "#{$post->post_id} (in thread {$post->Thread->title})";
     }
 
     public function setThreadSoftDeleteDetails(Thread $thread): void
     {
         $this->changeType = ModerationLogType::DELETE_SOFT;
+        $this->contentType = ModerationContentType::THREAD;
         $this->thread = $thread;
         $this->reason = $thread->DeletionLog->delete_reason;
-        $this->message = "Thread {$thread->title} hidden by {$this->user?->username}";
+        $this->message = "{$thread->title}";
+    }
+
+    public function setPostMadeVisibleDetails(Post $post): void {
+        $this->changeType = ModerationLogType::UNDELETED;
+        $this->contentType = ModerationContentType::POST;
+        $this->post = $post;
+        $this->message = "#{$post->post_id} (in thread {$post->Thread->title})";
     }
 
     public function setThreadMadeVisibleDetails(Thread $thread): void {
         $this->changeType = ModerationLogType::UNDELETED;
+        $this->contentType = ModerationContentType::THREAD;
         $this->thread = $thread;
-        $this->message = "Thread {$thread->title} undeleted (made visible) by {$this->user?->username}";
+        $this->message = "{$thread->title}";
     }
 
     protected function _validate(): array
@@ -131,17 +146,54 @@ class CreatorService extends AbstractService {
         }
     }
 
+    private function shouldIgnore(): bool {
+        /** @var string[] $ignoreForums */
+        $ignoreForums = $this->app->options()['vatger_logging_ignore_forums'];
+
+        /** @var string[] $ignoreThreads */
+        $ignoreThreads = $this->app->options()['vatger_logging_ignore_threads'];
+
+        if ($this->thread !== null) {
+            $threadIdStr = strval($this->thread->Forum->node_id);
+
+            // Check if we're ignoring the forum!
+            if (array_find($ignoreForums, fn($ignoreId) => $threadIdStr === $ignoreId)) {
+                return true;
+            }
+        }
+
+        if ($this->post !== null) {
+            $threadIdStr = strval($this->post->Thread->thread_id);
+            if (array_find($ignoreThreads, fn($ignoreId) => $threadIdStr === $ignoreId)) {
+                return true;
+            }
+
+            $forumIdStr = strval($this->post->Thread->Forum->node_id);
+            if (array_find($ignoreForums, fn($ignoreId) => $forumIdStr === $ignoreId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     protected function _save(): void
     {
+        if ($this->shouldIgnore()) {
+            return;
+        }
+
         /** @var VatgerModerationLog $entity */
         $moderationLogEntity = $this->em()->create(VatgerModerationLog::class);
 
         $moderationLogEntity->user_id = $this->user->user_id;
+        $moderationLogEntity->ip_address = Ip::stringToBinary(\XF::app()->request()->getIp());
         $moderationLogEntity->thread_id = $this->getThreadId();
         $moderationLogEntity->post_id = $this->getPostId();
         $moderationLogEntity->reason = $this->reason;
         $moderationLogEntity->message = $this->message;
         $moderationLogEntity->change_type = $this->changeType->toString();
+        $moderationLogEntity->content_type = $this->contentType->toString();
 
         try {
             $moderationLogEntity->save();

@@ -16,11 +16,13 @@ class IgnoreModeration extends AbstractOption {
     {
         return static::getTemplate('admin:option_template_vatger_ignoreModeration', $option, $htmlParams, [
             'choices' => $choices,
-            'choiceType' => $choiceType
+            'choiceType' => $choiceType,
+            'nextCounter' => count($choices),
         ]);
     }
 
-    public static function renderForumOption(Option $option, array $htmlParams) {
+    public static function renderForumOption(Option $option, array $htmlParams): string
+    {
         $choices = [];
 
         /** @var ForumFinder $finder */
@@ -29,11 +31,10 @@ class IgnoreModeration extends AbstractOption {
         foreach ($option->option_value as $node) {
             /** @var ForumFinder|null $thread */
             $forum = $finder->where('node_id', $node)->fetchOne();
-            if (!$forum) continue;
 
             $choices[] = [
-                'id' => $forum->node_id,
-                'name' => $forum->title,
+                'id' => $node,
+                'name' => $forum?->title ?? "Error: Forum with this ID doesn't exist!",
             ];
 
             $finder->resetWhere();
@@ -52,11 +53,10 @@ class IgnoreModeration extends AbstractOption {
         foreach ($option->option_value as $node) {
             /** @var Thread|null $thread */
             $thread = $finder->where('thread_id', $node)->fetchOne();
-            if (!$thread) continue;
 
             $choices[] = [
-                'id' => $thread->thread_id,
-                'name' => $thread->title,
+                'id' => $node,
+                'name' => $thread?->title ?? "Error: Thread with this ID doesn't exist!",
             ];
 
             $finder->resetWhere();
@@ -70,22 +70,26 @@ class IgnoreModeration extends AbstractOption {
         $output = [];
 
         foreach ($value as $node) {
-            $split = explode(' ', $node);
-            $testStr = $node;
+            if (!isset($node['id'])) {
+                continue;
+            }
+
+            $idStr = $node['id'];
+            $split = explode(' ', $idStr);
 
             if (count($split) > 0) {
-                $testStr = $split[0];
+                $idStr = $split[0];
             }
 
-            if (!is_numeric($testStr)) {
+            if (!is_numeric($idStr)) {
                 continue;
             }
 
-            if (array_find($output, fn(string $value) => $value === $testStr) !== null) {
+            if (array_find($output, fn(string $value) => $value === $idStr) !== null) {
                 continue;
             }
 
-            $output[] = $testStr;
+            $output[] = $idStr;
         }
 
         sort($output);
