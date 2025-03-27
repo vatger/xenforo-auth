@@ -8,6 +8,11 @@ use XF\Entity\Forum;
 class Thread extends XFCP_Thread {
     protected function _preDelete(): void
     {
+        if (count($this->getPostIds()) == 0) {
+            parent::_preDelete();
+            return;
+        }
+
         /** @var ModeratorLogCreatorService $creatorService */
         $creatorService = $this->app()->service(ModeratorLogCreatorService::class);
 

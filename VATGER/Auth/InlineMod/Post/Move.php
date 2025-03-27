@@ -3,6 +3,7 @@
 namespace VATGER\Auth\InlineMod\Post;
 
 use VATGER\Auth\Entity\Post;
+use VATGER\Auth\Service\VatgerModerationLog\CreatorService as ModeratorLogCreatorService;
 use XF\Mvc\Entity\AbstractCollection;
 use XF\PrintableException;
 
@@ -10,6 +11,8 @@ class Move extends XFCP_Move {
 
 
     /**
+     * Structure of $options (when selecting 'existing thread'):
+     *
      * ^ array:8 [
      * "thread_type" => "existing"
      * "node_id" => 0
@@ -21,7 +24,8 @@ class Move extends XFCP_Move {
      * "alert_reason" => ""
      * ]
      *
-     * Structure of $options (when selecting 'existing thread') ^
+     *
+     * Structure of $options (when selecting 'new thread'):
      *
      * ^ array:8 [
      * "thread_type" => "new"
@@ -33,8 +37,6 @@ class Move extends XFCP_Move {
      * "alert" => true
      * "alert_reason" => ""
      * ]
-     *
-     * Structure of $options (when selecting 'new thread')
      */
 
     /**
@@ -43,11 +45,14 @@ class Move extends XFCP_Move {
      */
     public function applyInternal(AbstractCollection $entities, array $options): void
     {
-        dd($options);
+        /** @var ModeratorLogCreatorService $creator */
+        $creator = $this->app()->service(ModeratorLogCreatorService::class);
 
         /** @var Post $entity */
         foreach ($entities as $entity) {
-            dd($entity);
+            $creator->setPostMoveDetails($entity, $options);
+            $creator->save();
+            $creator->reset();
         }
 
         parent::applyInternal($entities, $options);

@@ -12,6 +12,8 @@ use XF\Entity\Forum;
 use XF\Entity\Post;
 use XF\Entity\Thread;
 use XF\Entity\User;
+use XF\Finder\ForumFinder;
+use XF\Repository\ThreadRepository;
 use XF\Service\AbstractService;
 use XF\Service\ValidateAndSavableTrait;
 use XF\Util\Ip;
@@ -49,6 +51,36 @@ class CreatorService extends AbstractService {
         $this->reason = null;
         $this->message = null;
         $this->changeType = null;
+        $this->contentType = null;
+    }
+
+    public function reset(): void {
+        $this->setupDefaults();
+    }
+
+    public function setPostMoveDetails(Post $post, array $options): void
+    {
+        $this->changeType = ModerationLogType::MOVE;
+        $this->contentType = ModerationContentType::POST;
+        $this->post = $post;
+        $this->message = "#{$post->post_id}: ";
+
+        $postThread = $post->Thread;
+
+        if ($options['thread_type'] == 'new') {
+            /** @var Forum|null $forum */
+            $forum = $this->finder(ForumFinder::class)->where('node_id', $options['node_id'])->fetchOne();
+            $this->message .= "{$postThread->title} ({$postThread->node_id}) --> Forum: {$forum?->title} ({$forum?->node_id})";
+        } else if($options['thread_type'] == 'existing') {
+            /** @var ThreadRepository $threadRepository */
+            $threadRepository = $this->repository(ThreadRepository::class);
+            $thread = $threadRepository->getThreadFromUrl($options['existing_url']);
+
+            $this->thread = $thread;
+            $this->message .= "{$postThread->title} ({$postThread->node_id}) --> Thread: {$thread?->title} ({$thread?->node_id})";
+        } else {
+            $this->message = "unknown move";
+        }
     }
 
     public function setThreadMoveDetails(Thread $thread, Forum $from, Forum $to): void
@@ -56,7 +88,7 @@ class CreatorService extends AbstractService {
         $this->changeType = ModerationLogType::MOVE;
         $this->contentType = ModerationContentType::THREAD;
         $this->thread = $thread;
-        $this->message = "{$this->thread->title} moved from {$from->title} ({$from->node_id}) to {$to->title} ({$to->node_id})";
+        $this->message = "From {$from->title} ({$from->node_id}) to {$to->title} ({$to->node_id})";
     }
 
     public function setPostHardDeleteDetails(Post $post): void {
