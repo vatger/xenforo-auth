@@ -40,5 +40,8 @@
     },
     "vatger_logging_ignore_threads.json": {
         "hash": "7bd84acaa13e3b90588aba35889a4ee6"
+    },
+    "vatger_logging_prune_after_days.json": {
+        "hash": "97e4437aaa1081071ff474135b067a53"
     }
 }

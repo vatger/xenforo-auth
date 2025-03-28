@@ -1,0 +1,17 @@
+{
+    "cron_class": "VATGER\\Auth\\Cron\\CleanUpModerationLogs",
+    "cron_method": "deleteExpiredLogs",
+    "run_rules": {
+        "day_type": "dom",
+        "dom": [
+            -1
+        ],
+        "hours": [
+            4
+        ],
+        "minutes": [
+            0
+        ]
+    },
+    "active": true
+}

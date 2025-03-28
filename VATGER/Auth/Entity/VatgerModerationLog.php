@@ -8,6 +8,7 @@ use XF\Entity\Thread;
 use XF\Entity\User;
 use XF\Mvc\Entity\Entity;
 use XF\Mvc\Entity\Structure;
+use XF\PrintableException;
 
 /**
  * COLUMNS
@@ -29,6 +30,19 @@ use XF\Mvc\Entity\Structure;
  * @property-read VatgerPostContent[] $PostContents
  */
 class VatgerModerationLog extends Entity {
+    /**
+     * @throws PrintableException
+     */
+    protected function _preDelete(): void
+    {
+        // Before deleting this moderation log, we need to delete ALL postContent entities first
+        foreach ($this->PostContents as $entity) {
+            $entity->delete();
+        }
+
+        parent::_preDelete();
+    }
+
     public static function getStructure(Structure $structure)
     {
         $structure->table = 'xf_vatger_moderation_logs';

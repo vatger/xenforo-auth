@@ -1,0 +1,1 @@
+Deletes all logs after the specified number of days. For example, 6 months = 30 * 6 = 180 days.
