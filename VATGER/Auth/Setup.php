@@ -35,6 +35,9 @@ class Setup extends AbstractSetup
         $this->schemaManager()->alterTable('xf_user', function (\XF\Db\Schema\Alter $table) {
             $table->dropColumns('vatsim_id');
         });
+
+        $this->schemaManager()->dropTable('xf_vatger_post_content');
+        $this->schemaManager()->dropTable('xf_vatger_moderation_logs');
     }
 
     public function upgrade16Step1(array $stepParams = []): void
