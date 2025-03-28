@@ -4,7 +4,9 @@ namespace VATGER\Auth\Service\Vatsim;
 
 use ArrayObject;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Utils;
 use XF\Service\AbstractService;
 
 class ConnectService extends AbstractService {
@@ -52,9 +54,12 @@ class ConnectService extends AbstractService {
                 ]
             ]);
 
-            return \GuzzleHttp\json_decode($tokenResponse->getBody(), true);
-        } catch (RequestException $e) {
-            \XF::logError($e->getMessage(), true);
+            return Utils::jsonDecode($tokenResponse->getBody(), true);
+        } catch (RequestException|GuzzleException $e) {
+            if ($e->getResponse()->getStatusCode() !== 400) {
+                \XF::logError($e->getMessage(), true);
+            }
+
             return null;
         }
     }
@@ -68,8 +73,8 @@ class ConnectService extends AbstractService {
                 ]
             ]);
 
-            return \GuzzleHttp\json_decode($userResponse->getBody(), true);
-        } catch (RequestException $e) {
+            return Utils::jsonDecode($userResponse->getBody(), true);
+        } catch (RequestException|GuzzleException $e) {
             \XF::logError($e->getMessage(), true);
             return null;
         }
