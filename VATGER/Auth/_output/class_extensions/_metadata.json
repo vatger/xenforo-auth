@@ -2,10 +2,19 @@
     "XF-Entity-PermissionEntry_VATGER-Auth-Entity-PermissionEntry.json": {
         "hash": "07ad974fac2f08a79ca409c88412c947"
     },
+    "XF-Entity-Post_VATGER-Auth-Entity-Post.json": {
+        "hash": "898c571de04fa79a91ce898bcbf0843f"
+    },
+    "XF-Entity-Thread_VATGER-Auth-Entity-Thread.json": {
+        "hash": "9aa6dbf0148d67de89e5e90a8f45a3dd"
+    },
     "XF-Entity-UserGroup_VATGER-Auth-Entity-UserGroup.json": {
         "hash": "d022cb7fd5084e0b4f137fdccf6586d1"
     },
     "XF-Entity-User_VATGER-Auth-Entity-User.json": {
         "hash": "e42f87be4ad04aeaa66d19079ba4c71f"
+    },
+    "XF-InlineMod-Post-Move_VATGER-Auth-InlineMod-Post-Move.json": {
+        "hash": "6911531b7364c5b252a82c86d36a3405"
     }
 }

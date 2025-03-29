@@ -1,5 +1,8 @@
 {
     "vatgerAuth.json": {
-        "hash": "c00a7ada9801536853b4fc507fcce3bb"
+        "hash": "fd00f1d2f1af0d72624caabbe9f478f1"
+    },
+    "vatgerModeration.json": {
+        "hash": "97e715478630de74eb227baa10f43d2e"
     }
 }

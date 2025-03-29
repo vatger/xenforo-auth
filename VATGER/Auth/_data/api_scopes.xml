@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<api_scopes>
-  <api_scope api_scope_id="vatger_moderator:read"/>
-  <api_scope api_scope_id="vatger_moderator:write"/>
-  <api_scope api_scope_id="vatger_usergroup:read"/>
-</api_scopes>

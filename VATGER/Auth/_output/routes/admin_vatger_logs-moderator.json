@@ -1,0 +1,11 @@
+{
+    "route_type": "admin",
+    "route_prefix": "vatger",
+    "sub_name": "logs/moderator",
+    "format": "logs/moderator/:int<log_id>/",
+    "build_class": "",
+    "build_method": "",
+    "controller": "VATGER\\Auth:LogController",
+    "context": "vatgerModerationLog",
+    "action_prefix": ""
+}

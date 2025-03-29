@@ -5,19 +5,6 @@ namespace VATGER\Auth\Helpers;
 use XF\Api\Controller\AbstractController as AbstractAPIController;
 use XF\Mvc\Reply\Error;
 
-enum HttpResponseCode {
-    case HTTP_NOT_FOUND;
-    case HTTP_BAD_REQUEST;
-
-    public function getStatusCode(): int
-    {
-        return match($this) {
-            HttpResponseCode::HTTP_NOT_FOUND => 404,
-            HttpResponseCode::HTTP_BAD_REQUEST => 400,
-        };
-    }
-}
-
 class ErrorResponse
 {
     private static string $CODE_USR_NOT_FOUND = "user_not_found";

@@ -1,0 +1,1 @@
+Any of the forums listed here will be ignored when logging moderative actions. This can - for example - be useful for staff-only forums, where all moderative actions are logged by default anyway.

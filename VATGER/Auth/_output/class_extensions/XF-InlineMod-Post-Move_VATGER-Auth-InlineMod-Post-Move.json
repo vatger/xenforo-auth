@@ -1,0 +1,6 @@
+{
+    "from_class": "XF\\InlineMod\\Post\\Move",
+    "to_class": "VATGER\\Auth\\InlineMod\\Post\\Move",
+    "execute_order": 10,
+    "active": true
+}

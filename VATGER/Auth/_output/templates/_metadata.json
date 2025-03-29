@@ -1,4 +1,24 @@
 {
+    "admin/option_template_vatger_ignoreModeration.html": {
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "c8b309199748cb942d58fdb3528a42f2"
+    },
+    "admin/vatger_log_moderator_list.html": {
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "b34c9d7de268447d939eaf6d11839084"
+    },
+    "admin/vatger_log_moderator_view.html": {
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "2a19b6209c67fbf5c49e8797ddc1bd8a"
+    },
+    "admin/vatger_logging_change_type_macro.html": {
+        "version_id": 136,
+        "version_string": "1.3.6",
+        "hash": "53902af7699d484a3ce7cdf0b70b5408"
+    },
     "public/select_functional_account.html": {
         "version_id": 1,
         "version_string": "0.0.1",

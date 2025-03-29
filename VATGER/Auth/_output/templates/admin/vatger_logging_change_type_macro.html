@@ -1,0 +1,14 @@
+<xf:macro name="vatger_change_type_macro" arg-changeType="n/a" arg-contentType="n/a">
+	<xf:callback class="VATGER\Auth\Helpers\Text" method="returnFirstLetterCapitalized" params="[{$contentType}]"/>
+	<xf:if is="$changeType == 'move'">
+		moved
+	<xf:elseif is="$changeType == 'soft_delete'"/>
+		removed from public view
+	<xf:elseif is="$changeType == 'hard_delete'"/>
+		permanently deleted
+	<xf:elseif is="$changeType == 'undeleted'"/>
+		undeleted
+	<xf:else/>
+		N/A
+	</xf:if>
+</xf:macro>

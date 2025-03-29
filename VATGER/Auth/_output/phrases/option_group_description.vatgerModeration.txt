@@ -1,0 +1,1 @@
+Configure moderator logging of the VATSIM Germany AddOn.

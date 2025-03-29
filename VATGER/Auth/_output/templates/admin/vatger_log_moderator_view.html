@@ -1,0 +1,88 @@
+<xf:title>{{ phrase('moderator_log_entry') }}</xf:title>
+
+<div class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<xf:formrow label="{{ phrase('user') }}">
+				<a href="{{ link('users/edit', $entry.User) }}">{$entry.User.username}</a>
+				<xf:if is="$entry.ip_address">
+					@ <a href="{{ link_type('public', 'misc/ip-info', null, {'ip': $entry.ip_address|ip}) }}" target="_blank" class="u-ltr">{$entry.ip_address|ip}</a>
+				</xf:if>
+			</xf:formrow>
+			<xf:formrow label="{{ phrase('date') }}">
+				<xf:date time="{$entry.date}" />
+			</xf:formrow>
+			<xf:formrow label="{{ phrase('action') }}">
+				<xf:macro 
+					template="vatger_logging_change_type_macro" 
+					name="vatger_change_type_macro" 
+					arg-changeType="{{$entry.change_type}}"
+					arg-contentType="{{$entry.content_type}}"
+				/>
+			</xf:formrow>
+			
+			<xf:if is="$entry.change_type == 'hard_delete'">
+				<xf:formrow label="Target">
+					{$entry.message}
+				</xf:formrow>
+			</xf:if>
+			
+			<xf:if is="$entry.thread_id AND $entry.Thread">
+				<xf:formrow label="Target Thread">
+					<a href="{{ link_type('public', 'threads', $entry.Thread) }}">
+						{$entry.Thread.title}
+					</a>
+				</xf:formrow>
+			</xf:if>
+			
+			<xf:if is="$entry.post_id AND $entry.Post">
+				<xf:formrow label="Target Post">
+					<a href="{{ link_type('public', 'posts', $entry.Post) }}">
+						#{$entry.Post.post_id}
+					</a>
+				</xf:formrow>
+			</xf:if>
+			
+			<xf:if is="$entry.content_type == 'thread' AND $entry.change_type == 'hard_delete'">
+				<xf:formrow label="Post count">
+					{{ count($entry.PostContents) }}
+				</xf:formrow>
+			</xf:if>
+			
+			<!--[Reason can only be provided for temporary deletions]-->
+			<xf:if is="$entry.change_type == 'soft_delete'">
+				<xf:formrow label="Reason">
+					{{$entry.reason ? $entry.reason : 'N/A'}}
+				</xf:formrow>
+			</xf:if>
+			
+			<xf:if is="$entry.PostContents is not empty">
+				<div style="background-color: hsla(var(--xf-pageBg)); padding: 10px">
+					<xf:foreach loop="$entry.PostContents" value="$postContent" i="$i">
+						<div class="block-container" style="margin-bottom: 10px;">
+							<div class="block-row block-row--separated">
+								<div class="contentRow">
+									<div class="contentRow-figure">
+										<xf:avatar user="$postContent.User" size="s" notooltip="true" />
+									</div>
+									<div class="contentRow-main">
+										<xf:if is="$entry.content_type == 'thread'">
+											<div class="contentRow-extra">#{$i}</div>
+										</xf:if>
+
+										<h3 class="contentRow-header"><xf:username user="$postContent.User" rich="true" notooltip="true" /></h3>
+
+										<xf:userblurb user="$postContent.User" class="contentRow-lesser" />
+									</div>
+								</div>
+							</div>
+							<div class="block-row block-row--separated">
+								{{ bb_code($postContent.content, 'post', $postContent.User) }}
+							</div>
+						</div>
+					</xf:foreach>
+				</div>
+			</xf:if>
+		</div>
+	</div>
+</div>
