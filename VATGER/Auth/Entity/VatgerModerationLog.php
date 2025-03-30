@@ -51,7 +51,7 @@ class VatgerModerationLog extends Entity {
         $structure->columns = [
             'id' => ['type' => self::UINT, 'primary' => true, 'autoIncrement' => true],
             'user_id' => ['type' => self::INT, 'required' => true],
-            'ip_address' => ['type' => self::STR, 'required' => true],
+            'ip_address' => ['type' => self::BINARY, 'maxlength' => 16, 'required' => true],
             'thread_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
             'post_id' => ['type' => self::INT, 'required' => false, 'nullable' => true],
             'reason' => ['type' => self::STR, 'required' => false, 'nullable' => true],
@@ -89,21 +89,5 @@ class VatgerModerationLog extends Entity {
         ];
 
         return $structure;
-    }
-
-    protected function setupApiResultData(EntityResult $result, $verbosity = self::VERBOSITY_NORMAL, array $options = [])
-    {
-        $result->includeColumn('id');
-        $result->includeColumn('user_id');
-        $result->includeColumn('ip_address');
-        $result->includeColumn('thread_id');
-        $result->includeColumn('post_id');
-        $result->includeColumn('reason');
-        $result->includeColumn('message');
-        $result->includeColumn('change_type');
-        $result->includeColumn('content_type');
-        $result->includeColumn('date');
-
-        $result->postContent = $this->PostContents;
     }
 }

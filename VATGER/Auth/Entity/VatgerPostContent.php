@@ -2,7 +2,6 @@
 
 namespace VATGER\Auth\Entity;
 
-use XF\Api\Result\EntityResult;
 use XF\Mvc\Entity\Entity;
 use XF\Mvc\Entity\Structure;
 use XF\Entity\User;
@@ -47,11 +46,5 @@ class VatgerPostContent extends Entity {
         ];
 
         return $structure;
-    }
-
-    protected function setupApiResultData(EntityResult $result, $verbosity = self::VERBOSITY_NORMAL, array $options = []): void
-    {
-        $result->includeColumn('content');
-        $result->username = $this->User->username;
     }
 }
