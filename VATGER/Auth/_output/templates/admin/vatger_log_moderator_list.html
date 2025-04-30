@@ -1,50 +1,50 @@
 <xf:title>{{ phrase('moderator_log') }}</xf:title>
 
-<xf:if is="$entries is not empty">
-	<xf:form action="{{ link('vatger/logs/moderator') }}" class="block">
-		<div class="block-container">
-			<div class="block-body">
-				<div class="block-row">
-					<span style="vertical-align: middle">
-						Filter by user:
-						<xf:select name="user_id" value="{$userId}" class="input--inline">
-							<xf:option value="">Any</xf:option>
-							<xf:options source="$logUsers" />
-						</xf:select>
-					</span>
-				</div>
+<xf:form action="{{ link('vatger/logs/moderator') }}" class="block">
+	<div class="block-container">
+		<div class="block-body">
+			<div class="block-row">
+				<span style="vertical-align: middle">
+					Filter by user:
+					<xf:select name="user_id" value="{$userId}" class="input--inline">
+						<xf:option value="">Any</xf:option>
+						<xf:options source="$logUsers" />
+					</xf:select>
+				</span>
+			</div>
 
-				<div class="block-row">
-					<span style="vertical-align: middle">
-						Filter by action:
-						<xf:select name="change_type" value="{$changeType}" class="input--inline">
-							<xf:option value="">Any</xf:option>
-							<xf:option value="move">Move</xf:option>
-							<xf:option value="soft_delete">Soft-Delete</xf:option>
-							<xf:option value="hard_delete">Hard-Delete</xf:option>
-							<xf:option value="undeleted">Undeleted</xf:option>
-						</xf:select>
-					</span>
-				</div>
+			<div class="block-row">
+				<span style="vertical-align: middle">
+					Filter by action:
+					<xf:select name="change_type" value="{$changeType}" class="input--inline">
+						<xf:option value="">Any</xf:option>
+						<xf:option value="move">Move</xf:option>
+						<xf:option value="soft_delete">Soft-Delete</xf:option>
+						<xf:option value="hard_delete">Hard-Delete</xf:option>
+						<xf:option value="undeleted">Undeleted</xf:option>
+					</xf:select>
+				</span>
+			</div>
 
-				<div class="block-row">
-					<span style="vertical-align: middle">
-						Filter by type:
-						<xf:select name="content_type" value="{$contentType}" class="input--inline">
-							<xf:option value="">Any</xf:option>
-							<xf:option value="thread">Thread</xf:option>
-							<xf:option value="post">Post</xf:option>
-						</xf:select>
-					</span>
-				</div>
+			<div class="block-row">
+				<span style="vertical-align: middle">
+					Filter by type:
+					<xf:select name="content_type" value="{$contentType}" class="input--inline">
+						<xf:option value="">Any</xf:option>
+						<xf:option value="thread">Thread</xf:option>
+						<xf:option value="post">Post</xf:option>
+					</xf:select>
+				</span>
+			</div>
 
-				<div class="block-row">
-					<xf:button type="submit">{{ phrase('filter') }}</xf:button>
-				</div>
+			<div class="block-row">
+				<xf:button type="submit">{{ phrase('filter') }}</xf:button>
 			</div>
 		</div>
-	</xf:form>
+	</div>
+</xf:form>
 
+<xf:if is="$entries is not empty">
 	<div class="block">
 		<div class="block-container">
 			<div class="block-body">
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 		<xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}"
-			link="logs/moderator" params="{$linkFilters}"
+			link="vatger/logs/moderator" params="{$linkFilters}"
 			wrapperclass="block-outer block-outer--after" />
 	</div>
 <xf:else />
