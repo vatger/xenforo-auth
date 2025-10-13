@@ -7,6 +7,7 @@ use VATGER\Auth\Helpers\ErrorResponse;
 use XF\Api\Controller\AbstractController;
 use XF\Api\Mvc\Reply\ApiResult;
 use XF\Finder\UserFinder;
+use XF\Mvc\Entity\Entity;
 use XF\Mvc\ParameterBag;
 use XF\Mvc\Reply\Error;
 use XF\PrintableException;
@@ -19,7 +20,8 @@ class UserModeratorController extends AbstractController {
         $this->assertApiScopeByRequestMethod('vatger_moderator');
     }
 
-    private function _getUser(ParameterBag $params) {
+    private function _getUser(ParameterBag $params): Entity|User|Error|\XF\Entity\User
+    {
         $userId = $params->get('user_id');
 
         if ($userId == null || !is_numeric($userId)) {
