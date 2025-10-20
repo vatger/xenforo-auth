@@ -185,7 +185,7 @@ class CreatorService extends AbstractService {
         /** @var string[] $ignoreThreads */
         $ignoreThreads = $this->app->options()['vatger_logging_ignore_threads'];
 
-        if ($this->thread !== null) {
+        if ($this->thread?->Forum !== null) {
             $threadIdStr = strval($this->thread->Forum->node_id);
 
             // Check if we're ignoring the forum!
@@ -194,13 +194,13 @@ class CreatorService extends AbstractService {
             }
         }
 
-        if ($this->post !== null) {
+        if ($this->post?->Thread !== null) {
             $threadIdStr = strval($this->post->Thread->thread_id);
             if (array_find($ignoreThreads, fn($ignoreId) => $threadIdStr === $ignoreId)) {
                 return true;
             }
 
-            $forumIdStr = strval($this->post->Thread->Forum->node_id);
+            $forumIdStr = strval($this->post->Thread->Forum?->node_id);
             if (array_find($ignoreForums, fn($ignoreId) => $forumIdStr === $ignoreId)) {
                 return true;
             }
