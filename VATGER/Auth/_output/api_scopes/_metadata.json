@@ -5,6 +5,9 @@
     "vatger_moderator-write.json": {
         "hash": "8f9f55b319055f0f2a7b2a17ed2de7ef"
     },
+    "vatger_user_avatar-delete.json": {
+        "hash": "cfe3040e357eed404e9069f6489fec1f"
+    },
     "vatger_usergroup-read.json": {
         "hash": "c8367e472d0efca761e9d60096a2305d"
     }
