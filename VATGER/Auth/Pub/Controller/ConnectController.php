@@ -124,6 +124,11 @@ class ConnectController extends AbstractController
 
         /** @var LoginPlugin $loginPlugin */
         $loginPlugin = $this->plugin(LoginPlugin::class);
+        $loginPlugin->triggerIfTfaConfirmationRequired(
+            $databaseUser,
+            $this->buildLink('login/two-step')
+        );
+
         $loginPlugin->completeLogin($databaseUser, true);
 
         return $this->redirect($this->_getHomeViewRedirect());
