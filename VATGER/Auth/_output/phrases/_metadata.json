@@ -53,6 +53,12 @@
         "version_string": "1.5.0",
         "hash": "c8e7710ea57a0ec0203d9ff33452194c"
     },
+    "api_scope.vatger_user_avatar_write.txt": {
+        "global_cache": false,
+        "version_id": 152,
+        "version_string": "1.5.2",
+        "hash": "c8e7710ea57a0ec0203d9ff33452194c"
+    },
     "api_scope.vatger_usergroup_read.txt": {
         "global_cache": false,
         "version_id": 131,
